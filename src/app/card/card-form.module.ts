@@ -18,6 +18,8 @@ import {
   TabViewModule, PanelModule
 } from "primeng/primeng";
 
+import { NgxVcardModule } from 'ngx-vcard';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +37,8 @@ import {
     CardModule,
     DialogModule,
     PanelModule,
-    KeyFilterModule
+    KeyFilterModule,
+    NgxVcardModule
   ],
   declarations: [TradeFormComponent],
   exports: [TradeFormComponent]

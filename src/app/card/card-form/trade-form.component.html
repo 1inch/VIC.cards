@@ -4,44 +4,45 @@
   </p-header>
 
   <div class="ui-g ui-fluid">
+
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vcard.firstName" [disabled]="loading" id="firstName" pInputText size="30" type="text">
+            <input [(ngModel)]="vCard.title" [disabled]="loading" id="title" pInputText size="30" type="text">
+            <label for="organization">Title</label>
+        </span>
+    </div>
+
+    <div class="ui-g-12 ui-md-12">
+        <span class="ui-float-label">
+            <input [(ngModel)]="vCard.name.firstNames" [disabled]="loading" id="firstName" pInputText size="30" type="text">
             <label for="firstName">First Name</label>
         </span>
     </div>
 
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vcard.middleName" [disabled]="loading" id="middleName" pInputText size="30" type="text">
-            <label for="middleName">Middle Name</label>
-        </span>
-    </div>
-
-    <div class="ui-g-12 ui-md-12">
-        <span class="ui-float-label">
-            <input [(ngModel)]="vcard.lastName" [disabled]="loading" id="lastName" pInputText size="30" type="text">
+            <input [(ngModel)]="vCard.name.lastNames" [disabled]="loading" id="lastName" pInputText size="30" type="text">
             <label for="lastName">Last Name</label>
         </span>
     </div>
 
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vcard.organization" [disabled]="loading" id="organization" pInputText size="30" type="text">
+            <input [(ngModel)]="vCard.organization" [disabled]="loading" id="organization" pInputText size="30" type="text">
             <label for="organization">Organization</label>
         </span>
     </div>
 
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vcard.workPhone" [disabled]="loading" id="workPhone" pInputText size="30" type="tel">
+            <input [(ngModel)]="vCard.telephone" [disabled]="loading" id="workPhone" pInputText size="30" type="tel">
             <label for="workPhone">Work Phone</label>
         </span>
     </div>
 
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vcard.emailAddress" [disabled]="loading" id="emailAddress" pInputText size="30" type="tel">
+            <input [(ngModel)]="vCard.email" [disabled]="loading" id="emailAddress" pInputText size="30" type="tel">
             <label for="emailAddress">E-Mail Address</label>
         </span>
     </div>

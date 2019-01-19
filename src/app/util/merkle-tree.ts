@@ -13,8 +13,9 @@ export class MerkleTree {
 
   constructor(elements) {
     // Create layers
-    this.elements = elements.map(el => keccak160(el));
-    this.layers = this.getLayers(this.elements);
+
+    this.elements = elements;
+    this.layers = this.getLayers(elements.map(el => keccak160(el)));
 
     return this;
   }
