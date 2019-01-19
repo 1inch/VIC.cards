@@ -10,4 +10,9 @@
 # Run dev
 ``yarn run start``
 
+## Used dependencies
+
+* VCard: https://github.com/enesser/vCards-js
+* QR Code: https://github.com/soldair/node-qrcode
+
 ###### Created by Crypto Maniacs 2019
