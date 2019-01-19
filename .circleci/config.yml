@@ -26,10 +26,9 @@ jobs:
 #      - run:
 #          name: Run tests
 #          command: npm test
-      - add_ssh_keys:
+      - deploy:
           fingerprints:
             - "9b:d1:9d:bf:ed:a4:0b:1c:b0:21:54:fb:8f:2a:09:ae"
-      - deploy:
           name: Deploy
           command: |
             if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
