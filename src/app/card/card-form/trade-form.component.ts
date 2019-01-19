@@ -5,6 +5,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
+import {MerkleTreeService} from "../../util/merkle-tree.service";
 
 library.add(fas, far, fab);
 
@@ -17,6 +18,8 @@ declare let require: any;
 })
 export class TradeFormComponent implements OnInit {
 
+  loading = false;
+
   vcard = {
     firstName: '',
     middleName: '',
@@ -27,7 +30,10 @@ export class TradeFormComponent implements OnInit {
     title: ''
   };
 
-  constructor(private web3Service: Web3Service) {
+  constructor(
+    private web3Service: Web3Service,
+    private merkleTreeService: MerkleTreeService
+  ) {
     console.log('Constructor: ' + web3Service);
   }
 
@@ -46,5 +52,20 @@ export class TradeFormComponent implements OnInit {
       emailAddress: '',
       title: ''
     };
+  }
+
+  generate(amount:number = 16) {
+
+    this.loading = true;
+
+    let privateKeys = Array.from(Array(amount).keys())
+      .map(_ => this.web3Service.web3.eth.accounts.create());
+
+    let merkleTree = this.merkleTreeService.create(privateKeys.map(pk => pk.address));
+
+    console.log(privateKeys);
+    console.log(merkleTree);
+
+    this.loading = false;
   }
 }
