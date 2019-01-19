@@ -272,7 +272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
-/* harmony import */ var _util_merkle_tree_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/merkle-tree.service */ "./src/app/util/merkle-tree.service.ts");
+/* harmony import */ var _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/merkle-tree */ "./src/app/util/merkle-tree.ts");
 
 
 
@@ -283,9 +283,8 @@ __webpack_require__.r(__webpack_exports__);
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["fab"]);
 var TradeFormComponent = /** @class */ (function () {
-    function TradeFormComponent(web3Service, merkleTreeService) {
+    function TradeFormComponent(web3Service) {
         this.web3Service = web3Service;
-        this.merkleTreeService = merkleTreeService;
         this.loading = false;
         this.vcard = {
             firstName: '',
@@ -319,10 +318,14 @@ var TradeFormComponent = /** @class */ (function () {
         this.loading = true;
         var privateKeys = Array.from(Array(amount).keys())
             .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
-        var merkleTree = this.merkleTreeService.create(privateKeys.map(function (pk) { return pk.address; }));
+        var merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
         console.log(privateKeys);
         console.log(merkleTree);
+        this.storeMerkleTree(merkleTree);
         this.loading = false;
+    };
+    TradeFormComponent.prototype.storeMerkleTree = function (merkleTree) {
+        // store in smart contract
     };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -330,8 +333,7 @@ var TradeFormComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./trade-form.component.html */ "./src/app/card/card-form/trade-form.component.html"),
             styles: [__webpack_require__(/*! ./trade-form.component.css */ "./src/app/card/card-form/trade-form.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"],
-            _util_merkle_tree_service__WEBPACK_IMPORTED_MODULE_7__["MerkleTreeService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"]])
     ], TradeFormComponent);
     return TradeFormComponent;
 }());
@@ -340,35 +342,29 @@ var TradeFormComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/util/merkle-tree.service.ts":
-/*!*********************************************!*\
-  !*** ./src/app/util/merkle-tree.service.ts ***!
-  \*********************************************/
-/*! exports provided: MerkleTreeService */
+/***/ "./src/app/util/merkle-tree.ts":
+/*!*************************************!*\
+  !*** ./src/app/util/merkle-tree.ts ***!
+  \*************************************/
+/*! exports provided: MerkleTree */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MerkleTreeService", function() { return MerkleTreeService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
+/* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MerkleTree", function() { return MerkleTree; });
 var _a = __webpack_require__(/*! ethereumjs-util */ "./node_modules/ethereumjs-util/dist/index.js"), keccak256 = _a.keccak256, bufferToHex = _a.bufferToHex;
 var keccak160 = function (input) {
     return keccak256(input).slice(12);
 };
-var MerkleTreeService = /** @class */ (function () {
-    function MerkleTreeService() {
+var MerkleTree = /** @class */ (function () {
+    function MerkleTree(elements) {
         this.layers = null;
-    }
-    MerkleTreeService.prototype.create = function (elements) {
         // Create layers
         elements = elements.map(function (el) { return keccak160(el); });
         this.layers = this.getLayers(elements);
-        return this.getHexRoot();
-    };
-    MerkleTreeService.prototype.getLayers = function (elements) {
+        return this;
+    }
+    MerkleTree.prototype.getLayers = function (elements) {
         var emptyLeveled = keccak160('');
         if ((elements.length % 2) === 1) {
             elements.push(emptyLeveled);
@@ -391,13 +387,13 @@ var MerkleTreeService = /** @class */ (function () {
         }
         return tree;
     };
-    MerkleTreeService.prototype.getRoot = function () {
+    MerkleTree.prototype.getRoot = function () {
         return this.layers[this.layers.length - 1][0];
     };
-    MerkleTreeService.prototype.getHexRoot = function () {
+    MerkleTree.prototype.getHexRoot = function () {
         return bufferToHex(this.getRoot());
     };
-    MerkleTreeService.prototype.getProof = function (idx) {
+    MerkleTree.prototype.getProof = function (idx) {
         var _this = this;
         if (idx === -1) {
             throw new Error('Element does not exist in Merkle tree');
@@ -411,11 +407,11 @@ var MerkleTreeService = /** @class */ (function () {
             return proof;
         }, []);
     };
-    MerkleTreeService.prototype.getHexProof = function (idx) {
+    MerkleTree.prototype.getHexProof = function (idx) {
         var result = this.getProof(idx);
         return this.bufArrToHexArr(result);
     };
-    MerkleTreeService.prototype.getPairElement = function (idx, layer) {
+    MerkleTree.prototype.getPairElement = function (idx, layer) {
         var pairIdx = idx % 2 === 0 ? idx + 1 : idx - 1;
         if (pairIdx < layer.length) {
             return layer[pairIdx];
@@ -424,7 +420,7 @@ var MerkleTreeService = /** @class */ (function () {
             return null;
         }
     };
-    MerkleTreeService.prototype.bufIndexOf = function (el, arr) {
+    MerkleTree.prototype.bufIndexOf = function (el, arr) {
         var hash;
         // Convert element to 32 byte hash if it is not one already
         if (el.length !== 32 || !Buffer.isBuffer(el)) {
@@ -440,16 +436,13 @@ var MerkleTreeService = /** @class */ (function () {
         }
         return -1;
     };
-    MerkleTreeService.prototype.bufArrToHexArr = function (arr) {
+    MerkleTree.prototype.bufArrToHexArr = function (arr) {
         if (arr.some(function (el) { return !Buffer.isBuffer(el); })) {
             throw new Error('Array is not an array of buffers');
         }
         return arr.map(function (el) { return '0x' + el.toString('hex'); });
     };
-    MerkleTreeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
-    ], MerkleTreeService);
-    return MerkleTreeService;
+    return MerkleTree;
 }());
 
 
@@ -471,8 +464,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _web3_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./web3.service */ "./src/app/util/web3.service.ts");
-/* harmony import */ var _merkle_tree_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./merkle-tree.service */ "./src/app/util/merkle-tree.service.ts");
-
 
 
 
@@ -487,7 +478,6 @@ var UtilModule = /** @class */ (function () {
             ],
             providers: [
                 _web3_service__WEBPACK_IMPORTED_MODULE_3__["Web3Service"],
-                _merkle_tree_service__WEBPACK_IMPORTED_MODULE_4__["MerkleTreeService"]
             ],
             declarations: []
         })
