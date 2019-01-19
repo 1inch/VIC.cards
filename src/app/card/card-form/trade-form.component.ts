@@ -5,7 +5,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {fas} from '@fortawesome/free-solid-svg-icons';
 import {far} from '@fortawesome/free-regular-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
-import {MerkleTreeService} from "../../util/merkle-tree.service";
+import {MerkleTree} from "../../util/merkle-tree";
 
 library.add(fas, far, fab);
 
@@ -31,8 +31,7 @@ export class TradeFormComponent implements OnInit {
   };
 
   constructor(
-    private web3Service: Web3Service,
-    private merkleTreeService: MerkleTreeService
+    private web3Service: Web3Service
   ) {
     console.log('Constructor: ' + web3Service);
   }
@@ -61,11 +60,19 @@ export class TradeFormComponent implements OnInit {
     let privateKeys = Array.from(Array(amount).keys())
       .map(_ => this.web3Service.web3.eth.accounts.create());
 
-    let merkleTree = this.merkleTreeService.create(privateKeys.map(pk => pk.address));
+    let merkleTree = new MerkleTree(
+      privateKeys.map(pk => pk.address)
+    );
 
     console.log(privateKeys);
     console.log(merkleTree);
 
+    this.storeMerkleTree(merkleTree);
+
     this.loading = false;
+  }
+
+  storeMerkleTree(merkleTree) {
+    // store in smart contract
   }
 }

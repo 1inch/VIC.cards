@@ -1,5 +1,3 @@
-import {Injectable} from "@angular/core";
-
 declare let require: any;
 declare let Buffer: any;
 const {keccak256, bufferToHex} = require('ethereumjs-util');
@@ -8,17 +6,16 @@ const keccak160 = function (input) {
   return keccak256(input).slice(12);
 };
 
-@Injectable()
-export class MerkleTreeService {
+export class MerkleTree {
 
   layers = null;
 
-  create(elements) {
+  constructor(elements) {
     // Create layers
     elements = elements.map(el => keccak160(el));
     this.layers = this.getLayers(elements);
 
-    return this.getHexRoot();
+    return this;
   }
 
   getLayers(elements) {
