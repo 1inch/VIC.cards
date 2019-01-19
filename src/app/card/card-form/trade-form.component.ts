@@ -11,6 +11,8 @@ library.add(fas, far, fab);
 
 declare let require: any;
 
+const vicArtifacts = require('./VicABI.json');
+
 @Component({
   selector: 'app-trade-form',
   templateUrl: './trade-form.component.html',
@@ -19,6 +21,8 @@ declare let require: any;
 export class TradeFormComponent implements OnInit {
 
   loading = false;
+
+  vicSmartContractAddress = '0x';
 
   vcard = {
     firstName: '',
@@ -53,7 +57,7 @@ export class TradeFormComponent implements OnInit {
     };
   }
 
-  generate(amount:number = 16) {
+  async generate(amount: number = 16) {
 
     this.loading = true;
 
@@ -72,7 +76,14 @@ export class TradeFormComponent implements OnInit {
     this.loading = false;
   }
 
-  storeMerkleTree(merkleTree) {
-    // store in smart contract
+  async storeMerkleTree(merkleTree: MerkleTree) {
+
+    const vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+
+    const result = await vicContract.methods
+      .publish(merkleTree.getHexRoot(), merkleTree.elements.length)
+      .send();
+
+    console.log('Call result', result);
   }
 }

@@ -4,6 +4,7 @@ import {Subject} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
 
+declare let ethereum: any;
 declare let window: any;
 
 @Injectable()
@@ -19,9 +20,20 @@ export class Web3Service {
     });
   }
 
-  public bootstrapWeb3() {
+  public async bootstrapWeb3() {
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof window.web3 !== 'undefined') {
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      this.web3 = window.web3;
+      try {
+        // Request account access if needed
+        await ethereum.enable();
+      } catch (error) {
+        // User denied account access...
+      }
+    }
+    // Legacy dapp browsers...
+    else if (typeof window.web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
       this.web3 = new Web3(window.web3.currentProvider);
     } else {
