@@ -251,7 +251,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMapp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.firstName\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.middleName\" id=\"middleName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"middleName\">Middle Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.lastName\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.organization\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.workPhone\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.emailAddress\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.firstName\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.middleName\" [disabled]=\"loading\" id=\"middleName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"middleName\">Middle Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.lastName\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.workPhone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.emailAddress\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
 
 /***/ }),
 
@@ -272,6 +272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _util_merkle_tree_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/merkle-tree.service */ "./src/app/util/merkle-tree.service.ts");
+
 
 
 
@@ -281,8 +283,10 @@ __webpack_require__.r(__webpack_exports__);
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["fab"]);
 var TradeFormComponent = /** @class */ (function () {
-    function TradeFormComponent(web3Service) {
+    function TradeFormComponent(web3Service, merkleTreeService) {
         this.web3Service = web3Service;
+        this.merkleTreeService = merkleTreeService;
+        this.loading = false;
         this.vcard = {
             firstName: '',
             middleName: '',
@@ -309,18 +313,147 @@ var TradeFormComponent = /** @class */ (function () {
             title: ''
         };
     };
+    TradeFormComponent.prototype.generate = function (amount) {
+        var _this = this;
+        if (amount === void 0) { amount = 16; }
+        this.loading = true;
+        var privateKeys = Array.from(Array(amount).keys())
+            .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
+        var merkleTree = this.merkleTreeService.create(privateKeys.map(function (pk) { return pk.address; }));
+        console.log(privateKeys);
+        console.log(merkleTree);
+        this.loading = false;
+    };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-trade-form',
             template: __webpack_require__(/*! ./trade-form.component.html */ "./src/app/card/card-form/trade-form.component.html"),
             styles: [__webpack_require__(/*! ./trade-form.component.css */ "./src/app/card/card-form/trade-form.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"],
+            _util_merkle_tree_service__WEBPACK_IMPORTED_MODULE_7__["MerkleTreeService"]])
     ], TradeFormComponent);
     return TradeFormComponent;
 }());
 
 
+
+/***/ }),
+
+/***/ "./src/app/util/merkle-tree.service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/util/merkle-tree.service.ts ***!
+  \*********************************************/
+/*! exports provided: MerkleTreeService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(Buffer) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MerkleTreeService", function() { return MerkleTreeService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var _a = __webpack_require__(/*! ethereumjs-util */ "./node_modules/ethereumjs-util/dist/index.js"), keccak256 = _a.keccak256, bufferToHex = _a.bufferToHex;
+var keccak160 = function (input) {
+    return keccak256(input).slice(12);
+};
+var MerkleTreeService = /** @class */ (function () {
+    function MerkleTreeService() {
+        this.layers = null;
+    }
+    MerkleTreeService.prototype.create = function (elements) {
+        // Create layers
+        elements = elements.map(function (el) { return keccak160(el); });
+        this.layers = this.getLayers(elements);
+        return this.getHexRoot();
+    };
+    MerkleTreeService.prototype.getLayers = function (elements) {
+        var emptyLeveled = keccak160('');
+        if ((elements.length % 2) === 1) {
+            elements.push(emptyLeveled);
+        }
+        var tree = [elements];
+        var maxLevel = 1 + Math.log2(elements.length);
+        for (var level = 1; level <= maxLevel; level++) {
+            var current = [];
+            for (var i = 0; i < tree[level - 1].length / 2; i++) {
+                var a = tree[level - 1][i * 2];
+                var b = tree[level - 1][i * 2 + 1];
+                var hash = keccak160(Buffer.concat([a, b]));
+                current.push(hash);
+            }
+            if (current.length & 1 && level < maxLevel) {
+                current.push(emptyLeveled);
+            }
+            emptyLeveled = keccak160(Buffer.concat([emptyLeveled, emptyLeveled]));
+            tree.push(current);
+        }
+        return tree;
+    };
+    MerkleTreeService.prototype.getRoot = function () {
+        return this.layers[this.layers.length - 1][0];
+    };
+    MerkleTreeService.prototype.getHexRoot = function () {
+        return bufferToHex(this.getRoot());
+    };
+    MerkleTreeService.prototype.getProof = function (idx) {
+        var _this = this;
+        if (idx === -1) {
+            throw new Error('Element does not exist in Merkle tree');
+        }
+        return this.layers.reduce(function (proof, layer) {
+            var pairElement = _this.getPairElement(idx, layer);
+            if (pairElement) {
+                proof.push(pairElement);
+            }
+            idx = Math.floor(idx / 2);
+            return proof;
+        }, []);
+    };
+    MerkleTreeService.prototype.getHexProof = function (idx) {
+        var result = this.getProof(idx);
+        return this.bufArrToHexArr(result);
+    };
+    MerkleTreeService.prototype.getPairElement = function (idx, layer) {
+        var pairIdx = idx % 2 === 0 ? idx + 1 : idx - 1;
+        if (pairIdx < layer.length) {
+            return layer[pairIdx];
+        }
+        else {
+            return null;
+        }
+    };
+    MerkleTreeService.prototype.bufIndexOf = function (el, arr) {
+        var hash;
+        // Convert element to 32 byte hash if it is not one already
+        if (el.length !== 32 || !Buffer.isBuffer(el)) {
+            hash = keccak160(el);
+        }
+        else {
+            hash = el;
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (hash.equals(arr[i])) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    MerkleTreeService.prototype.bufArrToHexArr = function (arr) {
+        if (arr.some(function (el) { return !Buffer.isBuffer(el); })) {
+            throw new Error('Array is not an array of buffers');
+        }
+        return arr.map(function (el) { return '0x' + el.toString('hex'); });
+    };
+    MerkleTreeService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], MerkleTreeService);
+    return MerkleTreeService;
+}());
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/node-libs-browser/node_modules/buffer/index.js */ "./node_modules/node-libs-browser/node_modules/buffer/index.js").Buffer))
 
 /***/ }),
 
@@ -338,6 +471,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _web3_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./web3.service */ "./src/app/util/web3.service.ts");
+/* harmony import */ var _merkle_tree_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./merkle-tree.service */ "./src/app/util/merkle-tree.service.ts");
+
 
 
 
@@ -351,7 +486,8 @@ var UtilModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]
             ],
             providers: [
-                _web3_service__WEBPACK_IMPORTED_MODULE_3__["Web3Service"]
+                _web3_service__WEBPACK_IMPORTED_MODULE_3__["Web3Service"],
+                _merkle_tree_service__WEBPACK_IMPORTED_MODULE_4__["MerkleTreeService"]
             ],
             declarations: []
         })
