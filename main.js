@@ -233,6 +233,17 @@ var CardFormModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/card/card-form/VicABI.json":
+/*!********************************************!*\
+  !*** ./src/app/card/card-form/VicABI.json ***!
+  \********************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, default */
+/***/ (function(module) {
+
+module.exports = [{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"_report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"reportBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"_publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"publishBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"count","type":"uint32"}],"name":"CardsAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"index","type":"uint32"}],"name":"CardCompromised","type":"event"}];
+
+/***/ }),
+
 /***/ "./src/app/card/card-form/trade-form.component.css":
 /*!*********************************************************!*\
   !*** ./src/app/card/card-form/trade-form.component.css ***!
@@ -282,10 +293,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["fab"]);
+var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/card/card-form/VicABI.json");
 var TradeFormComponent = /** @class */ (function () {
     function TradeFormComponent(web3Service) {
         this.web3Service = web3Service;
         this.loading = false;
+        this.vicSmartContractAddress = '0x';
         this.vcard = {
             firstName: '',
             middleName: '',
@@ -313,19 +326,40 @@ var TradeFormComponent = /** @class */ (function () {
         };
     };
     TradeFormComponent.prototype.generate = function (amount) {
-        var _this = this;
         if (amount === void 0) { amount = 16; }
-        this.loading = true;
-        var privateKeys = Array.from(Array(amount).keys())
-            .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
-        var merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
-        console.log(privateKeys);
-        console.log(merkleTree);
-        this.storeMerkleTree(merkleTree);
-        this.loading = false;
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var privateKeys, merkleTree;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loading = true;
+                privateKeys = Array.from(Array(amount).keys())
+                    .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
+                merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
+                console.log(privateKeys);
+                console.log(merkleTree);
+                this.storeMerkleTree(merkleTree);
+                this.loading = false;
+                return [2 /*return*/];
+            });
+        });
     };
     TradeFormComponent.prototype.storeMerkleTree = function (merkleTree) {
-        // store in smart contract
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var vicContract, result;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+                        return [4 /*yield*/, vicContract.methods
+                                .publish(merkleTree.getHexRoot(), merkleTree.elements.length)
+                                .send()];
+                    case 1:
+                        result = _a.sent();
+                        console.log('Call result', result);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -359,9 +393,10 @@ var keccak160 = function (input) {
 var MerkleTree = /** @class */ (function () {
     function MerkleTree(elements) {
         this.layers = null;
+        this.elements = null;
         // Create layers
-        elements = elements.map(function (el) { return keccak160(el); });
-        this.layers = this.getLayers(elements);
+        this.elements = elements.map(function (el) { return keccak160(el); });
+        this.layers = this.getLayers(this.elements);
         return this;
     }
     MerkleTree.prototype.getLayers = function (elements) {
@@ -516,20 +551,47 @@ var Web3Service = /** @class */ (function () {
         });
     }
     Web3Service.prototype.bootstrapWeb3 = function () {
-        var _this = this;
-        // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-        if (typeof window.web3 !== 'undefined') {
-            // Use Mist/MetaMask's provider
-            this.web3 = new Web3(window.web3.currentProvider);
-        }
-        else {
-            console.log('No web3? You should consider trying MetaMask!');
-            // Hack to provide backwards compatibility for Truffle, which uses web3js 0.20.x
-            Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
-            // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-            this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
-        }
-        setInterval(function () { return _this.refreshAccounts(); }, 100);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var error_1;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!window.ethereum) return [3 /*break*/, 5];
+                        window.web3 = new Web3(ethereum);
+                        this.web3 = window.web3;
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        // Request account access if needed
+                        return [4 /*yield*/, ethereum.enable()];
+                    case 2:
+                        // Request account access if needed
+                        _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        error_1 = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 4: return [3 /*break*/, 6];
+                    case 5:
+                        if (typeof window.web3 !== 'undefined') {
+                            // Use Mist/MetaMask's provider
+                            this.web3 = new Web3(window.web3.currentProvider);
+                        }
+                        else {
+                            console.log('No web3? You should consider trying MetaMask!');
+                            // Hack to provide backwards compatibility for Truffle, which uses web3js 0.20.x
+                            Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
+                            // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+                            this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+                        }
+                        _a.label = 6;
+                    case 6:
+                        setInterval(function () { return _this.refreshAccounts(); }, 100);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     Web3Service.prototype.refreshAccounts = function () {
         var _this = this;
