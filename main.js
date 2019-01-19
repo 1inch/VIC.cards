@@ -72,7 +72,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"max-width: 960px; margin: 100px auto;\">\n  <img src=\"assets/logo.svg\" style=\"margin: 0 auto 50px auto; width: 200px; display: block;\">\n  <h1 style=\"text-align: center; font-weight: 300; font-size: 50px;\">VIC</h1>\n  <app-trade-form></app-trade-form>\n</div>\n"
+module.exports = "<div style=\"max-width: 768px; margin: 50px auto;\">\n  <img src=\"assets/logo.svg\" style=\"margin: 0 auto 50px auto; width: 200px; display: block;\">\n  <app-trade-form></app-trade-form>\n</div>\n"
 
 /***/ }),
 
@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _card_card_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./card/card.module */ "./src/app/card/card.module.ts");
+/* harmony import */ var _card_card_form_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./card/card-form.module */ "./src/app/card/card-form.module.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/panel */ "./node_modules/primeng/panel.js");
@@ -152,7 +152,7 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _card_card_module__WEBPACK_IMPORTED_MODULE_6__["CardModule"],
+                _card_card_form_module__WEBPACK_IMPORTED_MODULE_6__["CardFormModule"],
                 primeng_panel__WEBPACK_IMPORTED_MODULE_9__["PanelModule"],
             ],
             providers: [],
@@ -166,6 +166,73 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/card/card-form.module.ts":
+/*!******************************************!*\
+  !*** ./src/app/card/card-form.module.ts ***!
+  \******************************************/
+/*! exports provided: CardFormModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardFormModule", function() { return CardFormModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card-form/trade-form.component */ "./src/app/card/card-form/trade-form.component.ts");
+/* harmony import */ var _util_util_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/util.module */ "./src/app/util/util.module.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_10__);
+
+
+
+
+
+
+
+
+
+
+
+var CardFormModule = /** @class */ (function () {
+    function CardFormModule() {
+    }
+    CardFormModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
+                _util_util_module__WEBPACK_IMPORTED_MODULE_4__["UtilModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["InputTextModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["CodeHighlighterModule"],
+                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["CardModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["KeyFilterModule"]
+            ],
+            declarations: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]],
+            exports: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]]
+        })
+    ], CardFormModule);
+    return CardFormModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/card/card-form/trade-form.component.css":
 /*!*********************************************************!*\
   !*** ./src/app/card/card-form/trade-form.component.css ***!
@@ -173,7 +240,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NhcmQvY2FyZC1mb3JtL3RyYWRlLWZvcm0uY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQW1CO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVpLXBhbmVsLWZvb3RlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -184,7 +251,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.firstName\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.middleName\" id=\"middleName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"middleName\">Middle Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.lastName\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.organization\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.workPhone\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.emailAddress\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
 
 /***/ }),
 
@@ -216,11 +283,31 @@ _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_f
 var TradeFormComponent = /** @class */ (function () {
     function TradeFormComponent(web3Service) {
         this.web3Service = web3Service;
+        this.vcard = {
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            organization: '',
+            workPhone: '',
+            emailAddress: '',
+            title: ''
+        };
         console.log('Constructor: ' + web3Service);
     }
     TradeFormComponent.prototype.ngOnInit = function () {
         console.log('OnInit: ' + this.web3Service);
         console.log(this);
+    };
+    TradeFormComponent.prototype.resetVCard = function () {
+        this.vcard = {
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            organization: '',
+            workPhone: '',
+            emailAddress: '',
+            title: ''
+        };
     };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -231,61 +318,6 @@ var TradeFormComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"]])
     ], TradeFormComponent);
     return TradeFormComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/card/card.module.ts":
-/*!*************************************!*\
-  !*** ./src/app/card/card.module.ts ***!
-  \*************************************/
-/*! exports provided: CardModule */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardModule", function() { return CardModule; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card-form/trade-form.component */ "./src/app/card/card-form/trade-form.component.ts");
-/* harmony import */ var _util_util_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/util.module */ "./src/app/util/util.module.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-
-
-
-
-
-
-
-
-
-
-var CardModule = /** @class */ (function () {
-    function CardModule() {
-    }
-    CardModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            imports: [
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
-                _util_util_module__WEBPACK_IMPORTED_MODULE_4__["UtilModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
-                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeModule"],
-            ],
-            declarations: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]],
-            exports: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]]
-        })
-    ], CardModule);
-    return CardModule;
 }());
 
 
@@ -383,7 +415,7 @@ var Web3Service = /** @class */ (function () {
             }
             // Get the initial account balance so it can be displayed.
             if (accs.length === 0) {
-                console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
+                //    console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
                 return;
             }
             if (!_this.accounts || _this.accounts.length !== accs.length || _this.accounts[0] !== accs[0]) {
