@@ -17,6 +17,16 @@ declare let require: any;
 })
 export class TradeFormComponent implements OnInit {
 
+  vcard = {
+    firstName: '',
+    middleName: '',
+    lastName: '',
+    organization: '',
+    workPhone: '',
+    emailAddress: '',
+    title: ''
+  };
+
   constructor(private web3Service: Web3Service) {
     console.log('Constructor: ' + web3Service);
   }
@@ -24,5 +34,17 @@ export class TradeFormComponent implements OnInit {
   ngOnInit(): void {
     console.log('OnInit: ' + this.web3Service);
     console.log(this);
+  }
+
+  resetVCard() {
+    this.vcard = {
+      firstName: '',
+      middleName: '',
+      lastName: '',
+      organization: '',
+      workPhone: '',
+      emailAddress: '',
+      title: ''
+    };
   }
 }

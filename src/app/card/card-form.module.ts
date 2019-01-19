@@ -8,6 +8,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
+import {
+  ButtonModule,
+  CodeHighlighterModule,
+  DialogModule,
+  CardModule,
+  DropdownModule,
+  InputTextModule, KeyFilterModule,
+  TabViewModule, PanelModule
+} from "primeng/primeng";
 
 @NgModule({
   imports: [
@@ -15,12 +24,21 @@ import {BrowserModule} from '@angular/platform-browser';
     CommonModule,
     RouterModule,
     UtilModule,
+    InputTextModule,
     FormsModule,
     BrowserModule,
+    ButtonModule,
+    TabViewModule,
+    CodeHighlighterModule,
     FontAwesomeModule,
+    DropdownModule,
+    CardModule,
+    DialogModule,
+    PanelModule,
+    KeyFilterModule
   ],
   declarations: [TradeFormComponent],
   exports: [TradeFormComponent]
 })
-export class CardModule {
+export class CardFormModule {
 }

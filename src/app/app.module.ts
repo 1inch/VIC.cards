@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {CardModule} from './card/card.module';
+import {CardFormModule} from './card/card-form.module';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PanelModule} from 'primeng/panel';
@@ -19,7 +19,7 @@ import {PanelModule} from 'primeng/panel';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    CardModule,
+    CardFormModule,
     PanelModule,
   ],
   providers: [],

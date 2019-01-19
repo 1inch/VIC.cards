@@ -2,3 +2,16 @@
 @import "~primeng/resources/themes/nova-light/theme.css";
 @import "~primeng/resources/primeng.min.css";
 @import "~roboto-fontface/css/roboto/roboto-fontface.css";
+
+.ui-panel-titlebar {
+  font-size: 20pt;
+}
+
+.ui-panel-content {
+  font-size: 18pt;
+}
+
+.ui-panel-footer
+.ui-button-text {
+  font-size: 18pt;
+}

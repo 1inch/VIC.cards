@@ -47,7 +47,7 @@ export class Web3Service {
 
       // Get the initial account balance so it can be displayed.
       if (accs.length === 0) {
-        console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
+    //    console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
         return;
       }
 
