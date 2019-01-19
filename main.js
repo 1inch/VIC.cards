@@ -188,6 +188,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
 /* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
+
 
 
 
@@ -220,7 +222,8 @@ var CardFormModule = /** @class */ (function () {
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["CardModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["DialogModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["PanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["KeyFilterModule"]
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["KeyFilterModule"],
+                ngx_vcard__WEBPACK_IMPORTED_MODULE_11__["NgxVcardModule"]
             ],
             declarations: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]],
             exports: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]]
@@ -262,7 +265,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMapp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.firstName\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.middleName\" [disabled]=\"loading\" id=\"middleName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"middleName\">Middle Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.lastName\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.workPhone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vcard.emailAddress\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.email\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
 
 /***/ }),
 
@@ -294,34 +297,41 @@ __webpack_require__.r(__webpack_exports__);
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["fab"]);
 var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/card/card-form/VicABI.json");
+var VCardFormatter = __webpack_require__(/*! ngx-vcard/esm5/lib/ngx-vcard.formatter */ "./node_modules/ngx-vcard/esm5/lib/ngx-vcard.formatter.js").VCardFormatter;
 var TradeFormComponent = /** @class */ (function () {
     function TradeFormComponent(web3Service) {
         this.web3Service = web3Service;
         this.loading = false;
-        this.vicSmartContractAddress = '0x';
-        this.vcard = {
-            firstName: '',
-            middleName: '',
-            lastName: '',
+        this.vicSmartContractAddress = '0xd321d87758e588438a5c3da5a6f1db076cd6c551';
+        this.URL_PREFIX = 'https://vic.cards/sign/';
+        this.vCard = {
+            name: {
+                firstNames: '',
+                lastNames: ''
+            },
             organization: '',
-            workPhone: '',
-            emailAddress: '',
+            telephone: '',
+            workEmail: '',
             title: ''
         };
-        console.log('Constructor: ' + web3Service);
+        this.accounts = [];
+        this.account = null;
+        // console.log('Constructor: ' + web3Service);
     }
     TradeFormComponent.prototype.ngOnInit = function () {
-        console.log('OnInit: ' + this.web3Service);
-        console.log(this);
+        // console.log('OnInit: ' + this.web3Service);
+        this.watchAccount();
+        // console.log(this);
     };
     TradeFormComponent.prototype.resetVCard = function () {
-        this.vcard = {
-            firstName: '',
-            middleName: '',
-            lastName: '',
+        this.vCard = {
+            name: {
+                firstNames: '',
+                lastNames: ''
+            },
             organization: '',
-            workPhone: '',
-            emailAddress: '',
+            telephone: '',
+            workEmail: '',
             title: ''
         };
     };
@@ -331,35 +341,85 @@ var TradeFormComponent = /** @class */ (function () {
             var privateKeys, merkleTree;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                this.loading = true;
-                privateKeys = Array.from(Array(amount).keys())
-                    .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
-                merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
-                console.log(privateKeys);
-                console.log(merkleTree);
-                this.storeMerkleTree(merkleTree);
-                this.loading = false;
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        this.loading = true;
+                        privateKeys = Array.from(Array(amount).keys())
+                            .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
+                        merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
+                        // console.log(privateKeys);
+                        // console.log(merkleTree);
+                        // await this.storeMerkleTree(merkleTree);
+                        return [4 /*yield*/, this.generateVCards(amount, privateKeys.map(function (pk) { return pk.privateKey; }), merkleTree)];
+                    case 1:
+                        // console.log(privateKeys);
+                        // console.log(merkleTree);
+                        // await this.storeMerkleTree(merkleTree);
+                        _a.sent();
+                        // this.generateQRCodes();
+                        this.loading = false;
+                        return [2 /*return*/];
+                }
             });
         });
     };
     TradeFormComponent.prototype.storeMerkleTree = function (merkleTree) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var vicContract, result;
+            var vicContract;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+                        console.log(this.web3Service.web3.eth.accounts.getAccount);
                         return [4 /*yield*/, vicContract.methods
                                 .publish(merkleTree.getHexRoot(), merkleTree.elements.length)
-                                .send()];
+                                .send({
+                                from: this.account
+                            })];
                     case 1:
-                        result = _a.sent();
-                        console.log('Call result', result);
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });
         });
+    };
+    TradeFormComponent.prototype.watchAccount = function () {
+        var _this = this;
+        this.web3Service.accountsObservable.subscribe(function (accounts) {
+            console.log('Accounts: ', accounts);
+            _this.accounts = [];
+            for (var i = 0; i < accounts.length; i++) {
+                _this.accounts.push({
+                    label: accounts[i],
+                    value: accounts[i],
+                });
+            }
+            // console.log('Accounts', this.accounts);
+            _this.account = accounts[0];
+        });
+    };
+    TradeFormComponent.prototype.generateVCards = function (amount, privateKeys, merkleTree) {
+        var _this = this;
+        var vCards = privateKeys.map(function (privateKey, index) {
+            var proof = merkleTree.getHexProof(index);
+            var vCard = {
+                name: {
+                    firstNames: _this.vCard.name.firstNames,
+                    lastNames: _this.vCard.name.lastNames
+                },
+                organization: _this.vCard.organization,
+                telephone: _this.vCard.telephone ? [
+                    _this.vCard.telephone
+                ] : undefined,
+                workEmail: _this.vCard.workEmail ? [
+                    _this.vCard.workEmail
+                ] : undefined,
+                title: _this.vCard.title,
+                url: _this.URL_PREFIX + privateKey + '/' + proof
+            };
+            return VCardFormatter.getVCardAsString(vCard);
+        });
+        console.log('Cards', vCards);
     };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -392,11 +452,11 @@ var keccak160 = function (input) {
 };
 var MerkleTree = /** @class */ (function () {
     function MerkleTree(elements) {
+        // Create layers
         this.layers = null;
         this.elements = null;
-        // Create layers
-        this.elements = elements.map(function (el) { return keccak160(el); });
-        this.layers = this.getLayers(this.elements);
+        this.elements = elements;
+        this.layers = this.getLayers(elements.map(function (el) { return keccak160(el); }));
         return this;
     }
     MerkleTree.prototype.getLayers = function (elements) {
