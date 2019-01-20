@@ -16,27 +16,23 @@ declare let require: any;
 const vicArtifacts = require('./VicABI.json');
 
 @Component({
-  selector: 'app-sign',
-  templateUrl: './sign.component.html',
-  styleUrls: ['./sign.component.css'],
+  selector: 'app-verify',
+  templateUrl: './verify.component.html',
+  styleUrls: ['./verify.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class SignComponent implements OnInit {
+export class VerifyComponent implements OnInit {
 
-  privateKey = '';
+  messageHash = '';
+  signature = '';
   proof = [];
   loading = false;
   account = null;
   accounts = [];
   status = 'Waiting...';
   url = '';
-  email = '';
 
   vicSmartContractAddress = '0x98aF9e16cb231b4556D451eE08ba8A42f9908b7d';
-  randomMessage = '';
-  signature = '';
-
-  URL_PREFIX = 'https://vic.cards/#/verify/';
 
   constructor(
     private web3Service: Web3Service,
@@ -49,14 +45,13 @@ export class SignComponent implements OnInit {
   ngOnInit(): void {
     // console.log('OnInit: ' + this.web3Service);
 
-    this.privateKey = '0x' + this.route.snapshot.paramMap.get('privateKey');
+    this.messageHash = this.route.snapshot.paramMap.get('messageHash');
+    this.signature = this.route.snapshot.paramMap.get('signature');
     this.proof = this.route.snapshot.paramMap.get('proof').split(',');
-    this.email = this.route.snapshot.paramMap.get('email');
 
-    console.log('Private Key', this.privateKey);
+    console.log('messageHash', this.messageHash);
+    console.log('signature', this.signature);
     console.log('Proof', this.proof);
-
-    console.log('Web3', this.web3Service);
 
     this.parseEvents();
 
@@ -73,9 +68,21 @@ export class SignComponent implements OnInit {
       }, 100);
     }
 
-    let account = this.web3Service.web3.eth.accounts.privateKeyToAccount(this.privateKey);
+    let account = this.web3Service.web3.eth.accounts.recover({
+      messageHash: this.messageHash,
+      v: '0x' + this.signature.substr(130),
+      r: '0x' + this.signature.substr(2, 64),
+      s: '0x' + this.signature.substr(66, 64),
+    });
+    console.log({
+      messageHash: this.messageHash,
+      v: '0x' + this.signature.substr(130),
+      r: '0x' + this.signature.substr(2, 64),
+      s: '0x' + this.signature.substr(66, 64),
+    });
+    console.log(this.signature);
 
-    let {root, index} = MerkleTree.applyProof(account.address, this.proof);
+    let {root, index} = MerkleTree.applyProof(account, this.proof);
 
     console.log('Account', account);
 
@@ -99,7 +106,7 @@ export class SignComponent implements OnInit {
     console.log('Events', events);
 
     let kickEvents = await vicContract.getPastEvents('CardCompromised', {
-      filter: {user: events[0].user, root: root, index: index},
+      filter: {root: root, index: index},
       fromBlock: 7094907,
       toBlock: 'latest'
     });
@@ -107,25 +114,15 @@ export class SignComponent implements OnInit {
     console.log('Kick events', kickEvents);
 
     if (kickEvents.length) {
-      this.status = 'Your VIC card was revoked!';
+      this.status = 'This VIC card was already revoked!';
       alert(this.status);
       return;
     }
 
-    this.randomMessage = this.web3Service.web3.eth.accounts.create().privateKey;
-    let signatureObject = account.sign(
-      this.randomMessage
-    );
+    let timestamp = (await this.web3Service.web3.eth.getBlock(events[0].blockNumber)).timestamp;
 
-    let signature = signatureObject.signature;
+    this.status = 'Signature verified! ID: ' + (index + 1) + ', Date: ' + (new Date(timestamp * 1000)).toUTCString();
 
-    console.log('Signature', signature);
-
-    this.url = this.URL_PREFIX + signatureObject.messageHash + '/' + signature + '/' + this.proof;
-    this.status = 'Signature created!';
-  }
-
-  sendEMail() {
-    window.location.href = 'mailto:' + this.email + '?body=' + "%0D%0A%0D%0A:::::: VIC SIGNATURE ::::::%0D%0A%0D%0A" + this.url;
+    console.log('Event', events[0]);
   }
 }

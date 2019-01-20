@@ -31,7 +31,7 @@ export class TradeFormComponent implements OnInit {
 
   loading = false;
 
-  vicSmartContractAddress = '0xd321d87758e588438a5c3da5a6f1db076cd6c551';
+  vicSmartContractAddress = '0x98aF9e16cb231b4556D451eE08ba8A42f9908b7d';
   URL_PREFIX = 'https://vic.cards/#/sign/';
 
   vCard = {
@@ -88,10 +88,12 @@ export class TradeFormComponent implements OnInit {
       privateKeys.map(pk => pk.address)
     );
 
+    console.log('pk accounts', privateKeys.map(pk => pk.address));
+
     // console.log(privateKeys);
     // console.log(merkleTree);
 
-   // await this.storeMerkleTree(merkleTree);
+    await this.storeMerkleTree(merkleTree);
     let vCards = await this.generateVCards(amount, privateKeys.map(pk => pk.privateKey), merkleTree);
     this.QRCodes = await this.generateQRCodes(vCards);
 
@@ -104,7 +106,10 @@ export class TradeFormComponent implements OnInit {
 
     const vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
 
-    console.log(this.web3Service.web3.eth.accounts.getAccount);
+    // console.log(this.web3Service.web3.eth.accounts.getAccount);
+
+    console.log('Root', merkleTree.getHexRoot());
+    console.log('Layers', merkleTree.layers);
 
     await vicContract.methods
       .publish(merkleTree.getHexRoot(), merkleTree.elements.length)
@@ -152,7 +157,7 @@ export class TradeFormComponent implements OnInit {
           this.vCard.workEmail
         ] : undefined,
         title: this.vCard.title,
-        url: this.URL_PREFIX + privateKey.substr(2) + '/' + proof
+        url: this.URL_PREFIX + privateKey.substr(2) + '/' + proof + '/' + this.vCard.workEmail
           // .toString()
           // .replace(/,/g, '')
           // .replace(/0x/g, '')

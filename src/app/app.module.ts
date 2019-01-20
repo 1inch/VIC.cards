@@ -11,6 +11,8 @@ import {TradeFormComponent} from "./card/card-form/trade-form.component";
 import {SignModule} from "./sign/sign.module";
 import {SignComponent} from "./sign/sign.component";
 import {PanelModule} from "primeng/panel";
+import {VerifyComponent} from "./verify/verify.component";
+import {VerifyModule} from "./verify/verify.module";
 
 export const routes: Routes = [
   {
@@ -18,8 +20,12 @@ export const routes: Routes = [
     component: TradeFormComponent
   },
   {
-    path: 'sign/:privateKey/:proof',
+    path: 'sign/:privateKey/:proof/:email',
     component: SignComponent
+  },
+  {
+    path: 'verify/:messageHash/:signature/:proof',
+    component: VerifyComponent
   },
   {
     path: '**',
@@ -35,6 +41,7 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     CardFormModule,
+    VerifyModule,
     SignModule,
     PanelModule,
     BrowserModule,

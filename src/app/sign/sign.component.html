@@ -6,14 +6,14 @@
   <div class="ui-g ui-fluid">
     <div class="ui-g-12 ui-md-12">
       <code style="border: 1px solid #ccc; background: #efefef; padding: 10px; display: block">
-        0x
+        {{status}}
       </code>
     </div>
   </div>
 
   <p-footer style="text-align: center;">
     <div class="margin: 0 auto;">
-      <button pButton type="button" class="ui-button-rounded ui-button-success" label="📤 E-MAIL" [disabled]="loading" (click)="sign()"></button>
+      <button pButton type="button" class="ui-button-rounded ui-button-success" label="📤 E-MAIL" [disabled]="loading" (click)="sendEMail()"></button>
     </div>
   </p-footer>
 </p-panel>

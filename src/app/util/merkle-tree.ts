@@ -24,12 +24,24 @@ export class MerkleTree {
 
     let index = 0;
 
+    console.log('Account0', account);
+
+    account = keccak160(account);
+
+    console.log('keccak160(Account0)', account);
+
+    console.log('Proof1', proof);
+
+    proof = proof.map(el => new Buffer(el.substr(2), 'hex'));
+
+    console.log('Proof2', proof);
+
     for (let i = 0; i < proof.length; i++) {
 
       if (account < proof[i]) {
-        account = keccak160(account + proof[i]);
+        account = keccak160(Buffer.concat([account, proof[i]]));
       } else {
-        account = keccak160(proof[i] + account);
+        account = keccak160(Buffer.concat([proof[i], account]));
         index += 1 << i;
       }
     }
@@ -53,7 +65,12 @@ export class MerkleTree {
       for (let i = 0; i < tree[level - 1].length / 2; i++) {
         const a = tree[level - 1][i * 2];
         const b = tree[level - 1][i * 2 + 1];
-        const hash = keccak160(Buffer.concat([a, b]));
+        let hash;
+        if (a < b) {
+          hash = keccak160(Buffer.concat([a, b]));
+        } else {
+          hash = keccak160(Buffer.concat([b, a]));
+        }
         current.push(hash);
       }
 
