@@ -20,6 +20,26 @@ export class MerkleTree {
     return this;
   }
 
+  applyProof(account, proof) {
+
+    let index = 0;
+
+    for (let i = 0; i < proof.length; i++) {
+
+      if (account < proof[i]) {
+        account = keccak160(account + proof[i]);
+      } else {
+        account = keccak160(proof[i] + account);
+        index += 1 << i;
+      }
+    }
+
+    return {
+      root: account,
+      index: index
+    };
+  }
+
   getLayers(elements) {
     let emptyLeveled = keccak160('');
     if ((elements.length % 2) === 1) {
