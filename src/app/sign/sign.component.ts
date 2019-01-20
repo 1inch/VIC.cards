@@ -50,19 +50,18 @@ export class SignComponent implements OnInit {
 
     console.log('Web3', this.web3Service);
 
-    this.watchAccount();
-    this.getAccount();
+    this.parseEvents();
 
     // console.log(this);
   }
 
-  async getAccount() {
+  async parseEvents() {
 
     let scope = this;
 
     if (!this.web3Service.ready) {
       return setTimeout(function () {
-        scope.getAccount();
+        scope.parseEvents();
       }, 100);
     }
 
@@ -79,27 +78,6 @@ export class SignComponent implements OnInit {
     });
 
     console.log('Events', events);
-  }
-
-  watchAccount() {
-
-    this.web3Service.accountsObservable.subscribe((accounts) => {
-
-      // console.log('Accounts: ', accounts);
-
-      this.accounts = [];
-
-      for (let i = 0; i < accounts.length; i++) {
-        this.accounts.push({
-          label: accounts[i],
-          value: accounts[i],
-        });
-      }
-
-      // console.log('Accounts', this.accounts);
-
-      this.account = accounts[0];
-    });
   }
 
   sign() {

@@ -21,6 +21,8 @@ export class Web3Service {
   }
 
   public async bootstrapWeb3() {
+
+    let getAccounts = true;
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (window.ethereum) {
       window.web3 = new Web3(ethereum);
@@ -43,9 +45,14 @@ export class Web3Service {
       Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
       this.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws'));
+
+      getAccounts = false;
+      this.ready = true;
     }
 
-    setInterval(() => this.refreshAccounts(), 500);
+    if (getAccounts) {
+       setInterval(() => this.refreshAccounts(), 500);
+    }
   }
 
   private refreshAccounts() {
