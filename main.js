@@ -854,17 +854,6 @@ var RevokeModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/sign/VicABI.json":
-/*!**********************************!*\
-  !*** ./src/app/sign/VicABI.json ***!
-  \**********************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, default */
-/***/ (function(module) {
-
-module.exports = [{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"_report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"reportBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"_publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"publishBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"count","type":"uint32"}],"name":"CardsAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"index","type":"uint32"}],"name":"CardCompromised","type":"event"}];
-
-/***/ }),
-
 /***/ "./src/app/sign/sign.component.css":
 /*!*****************************************!*\
   !*** ./src/app/sign/sign.component.css ***!
@@ -916,7 +905,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["fab"]);
-var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/sign/VicABI.json");
+var vicArtifacts = __webpack_require__(/*! ../util/VicABI.json */ "./src/app/util/VicABI.json");
 var SignComponent = /** @class */ (function () {
     function SignComponent(web3Service, route, router) {
         this.web3Service = web3Service;
@@ -978,8 +967,10 @@ var SignComponent = /** @class */ (function () {
                             return [2 /*return*/];
                         }
                         console.log('Events', events);
+                        console.log('Event', events[0].returnValues.user);
+                        console.log('Index', index);
                         return [4 /*yield*/, vicContract.getPastEvents('CardCompromised', {
-                                filter: { user: events[0].user, root: root, index: index },
+                                filter: { user: events[0].returnValues.user, root: root, index: index },
                                 fromBlock: 7094907,
                                 toBlock: 'latest'
                             })];
