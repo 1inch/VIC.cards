@@ -221,6 +221,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var ngx_order_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-order-pipe */ "./node_modules/ngx-order-pipe/ngx-order-pipe.es5.js");
+
 
 
 
@@ -249,6 +251,7 @@ var CardFormModule = /** @class */ (function () {
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CardModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DialogModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelModule"],
+                ngx_order_pipe__WEBPACK_IMPORTED_MODULE_10__["OrderModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["KeyFilterModule"],
                 ngx_vcard__WEBPACK_IMPORTED_MODULE_8__["NgxVcardModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"]
@@ -294,7 +297,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n.ui-card-body 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" required [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"email\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-fluid\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" class=\"ui-g-6\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" required [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"email\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-sm ui-fluid\">\n    <p-card *ngFor=\"let QRCode of (QRCodes | orderBy: 'index')\" class=\"ui-g-6 ui-sm-12\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode.qr\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <span style=\"float: right; margin: 1px 5px 0 0; background: #e1e1e1; border-radius: 50%; padding: 5px 10px;\">{{ QRCode.index + 1 }}</span>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
 
 /***/ }),
 
@@ -375,7 +378,7 @@ var TradeFormComponent = /** @class */ (function () {
     TradeFormComponent.prototype.generate = function (amount) {
         if (amount === void 0) { amount = 8; }
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var privateKeys, merkleTree, vCards, _a;
+            var privateKeys, accounts, merkleTree, vCards, _a, i;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
                 switch (_b.label) {
@@ -383,7 +386,8 @@ var TradeFormComponent = /** @class */ (function () {
                         this.loading = true;
                         privateKeys = Array.from(Array(amount).keys())
                             .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
-                        merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
+                        accounts = privateKeys.map(function (pk) { return pk.address; });
+                        merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](accounts);
                         console.log('pk accounts', privateKeys.map(function (pk) { return pk.address; }));
                         // console.log(privateKeys);
                         // console.log(merkleTree);
@@ -398,7 +402,14 @@ var TradeFormComponent = /** @class */ (function () {
                         _a = this;
                         return [4 /*yield*/, this.generateQRCodes(vCards)];
                     case 3:
-                        _a.QRCodes = _b.sent();
+                        _a.QRCodes = (_b.sent()).map(function (qr) {
+                            return {
+                                qr: qr, index: null
+                            };
+                        });
+                        for (i = 0; i < accounts.length; i++) {
+                            this.QRCodes[i].index = _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"].applyProof(accounts[i], merkleTree.getHexProof(i)).index;
+                        }
                         setTimeout(this.generatePDF, 300);
                         this.loading = false;
                         return [2 /*return*/];
@@ -856,7 +867,7 @@ var MerkleTree = /** @class */ (function () {
             elements.push(emptyLeveled);
         }
         var tree = [elements];
-        var maxLevel = 1 + Math.log2(elements.length);
+        var maxLevel = Math.log2(elements.length);
         for (var level = 1; level <= maxLevel; level++) {
             var current = [];
             for (var i = 0; i < tree[level - 1].length / 2; i++) {
