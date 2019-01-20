@@ -767,6 +767,22 @@ var MerkleTree = /** @class */ (function () {
         this.layers = this.getLayers(elements.map(function (el) { return keccak160(el); }));
         return this;
     }
+    MerkleTree.prototype.applyProof = function (account, proof) {
+        var index = 0;
+        for (var i = 0; i < proof.length; i++) {
+            if (account < proof[i]) {
+                account = keccak160(account + proof[i]);
+            }
+            else {
+                account = keccak160(proof[i] + account);
+                index += 1 << i;
+            }
+        }
+        return {
+            root: account,
+            index: index
+        };
+    };
     MerkleTree.prototype.getLayers = function (elements) {
         var emptyLeveled = keccak160('');
         if ((elements.length % 2) === 1) {
