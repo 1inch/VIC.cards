@@ -42,7 +42,7 @@
 
     <div class="ui-g-12 ui-md-12">
         <span class="ui-float-label">
-            <input [(ngModel)]="vCard.email" [disabled]="loading" id="emailAddress" pInputText size="30" type="tel">
+            <input [(ngModel)]="vCard.workEmail" [disabled]="loading" id="emailAddress" pInputText size="30" type="tel">
             <label for="emailAddress">E-Mail Address</label>
         </span>
     </div>
@@ -60,9 +60,31 @@
 <br>
 
 <p-panel header="VIC Cards" [hidden]="!QRCodes.length">
-  <div id="contentToConvert">
-    <p-card *ngFor="let QRCode of QRCodes" [header]="vCard.name.firstNames + ' ' + vCard.name.lastNames">
-      <img [src]="QRCode">
+  <div id="contentToConvert" class="ui-g ui-fluid">
+    <p-card *ngFor="let QRCode of QRCodes" class="ui-g-6">
+
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-5">
+          <img [src]="QRCode" width="135">
+        </div>
+        <div class="ui-g-7">
+          <span style="font-size: 20pt;">
+            <div [hidden]="!vCard.title">
+              {{vCard.title}}
+            </div>
+            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}
+            <div style="color: darkgray; font-size: 14pt;">
+              {{vCard.organization}}
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <p-footer>
+        <div style="text-align: center">
+          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}
+        </div>
+      </p-footer>
     </p-card>
   </div>
 </p-panel>

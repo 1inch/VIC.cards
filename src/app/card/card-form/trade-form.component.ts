@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Web3Service} from '../../util/web3.service';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -7,7 +7,7 @@ import {far} from '@fortawesome/free-regular-svg-icons';
 import {fab} from '@fortawesome/free-brands-svg-icons';
 import {MerkleTree} from "../../util/merkle-tree";
 
-import { VCard } from 'ngx-vcard';
+import {VCard} from 'ngx-vcard';
 
 import * as jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -24,7 +24,8 @@ const {VCardFormatter} = require('ngx-vcard/esm5/lib/ngx-vcard.formatter');
 @Component({
   selector: 'app-trade-form',
   templateUrl: './trade-form.component.html',
-  styleUrls: ['./trade-form.component.css']
+  styleUrls: ['./trade-form.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TradeFormComponent implements OnInit {
 
@@ -76,7 +77,7 @@ export class TradeFormComponent implements OnInit {
     };
   }
 
-  async generate(amount: number = 16) {
+  async generate(amount: number = 8) {
 
     this.loading = true;
 
@@ -94,7 +95,7 @@ export class TradeFormComponent implements OnInit {
     let vCards = await this.generateVCards(amount, privateKeys.map(pk => pk.privateKey), merkleTree);
     this.QRCodes = await this.generateQRCodes(vCards);
 
-    this.generatePDF();
+    setTimeout(this.generatePDF, 300);
 
     this.loading = false;
   }
@@ -151,7 +152,10 @@ export class TradeFormComponent implements OnInit {
           this.vCard.workEmail
         ] : undefined,
         title: this.vCard.title,
-        url: this.URL_PREFIX + privateKey + '/' + proof
+        url: this.URL_PREFIX + privateKey.substr(2) + '/' + proof
+          // .toString()
+          // .replace(/,/g, '')
+          // .replace(/0x/g, '')
       };
 
       return VCardFormatter.getVCardAsString(vCard);
@@ -172,9 +176,14 @@ export class TradeFormComponent implements OnInit {
 
   public generatePDF() {
 
-    var data = document.getElementById('contentToConvert');
+    let data = document.getElementById('contentToConvert');
+
+    console.log('Data:', data);
 
     html2canvas(data).then(canvas => {
+
+      console.log('Canvas:', canvas);
+
       // Few necessary setting options
       var imgWidth = 208;
       var pageHeight = 295;
