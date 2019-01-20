@@ -1,0 +1,30 @@
+<p-panel>
+  <p-header>
+    Revoke Form
+  </p-header>
+
+  <div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-12">
+      <div class="ui-g ui-fluid">
+
+        <div class="ui-g-6 ui-md-12">
+          <span class="ui-float-label">
+              <p-dropdown [options]="eventBlocks" autoWidth="" [(ngModel)]="selectedEvent"></p-dropdown>
+          </span>
+        </div>
+
+        <div class="ui-g-6 ui-md-12">
+          <span class="ui-float-label">
+              <p-dropdown [options]="indexes" autoWidth="" [(ngModel)]="selectedIndex"></p-dropdown>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-footer style="text-align: center;">
+    <div class="margin: 0 auto;">
+      <button pButton type="button" class="ui-button-danger ui-button-rounded" [disabled]="loading" label="Revoke" (click)="revoke()"></button>
+    </div>
+  </p-footer>
+</p-panel>

@@ -13,11 +13,17 @@ import {SignComponent} from "./sign/sign.component";
 import {PanelModule} from "primeng/panel";
 import {VerifyComponent} from "./verify/verify.component";
 import {VerifyModule} from "./verify/verify.module";
+import {RevokeComponent} from "./revoke/revoke.component";
+import {RevokeModule} from "./revoke/revoke.module";
 
 export const routes: Routes = [
   {
     path: '',
     component: TradeFormComponent
+  },
+  {
+    path: 'revoke',
+    component: RevokeComponent
   },
   {
     path: 'sign/:privateKey/:proof/:email',
@@ -45,6 +51,7 @@ export const routes: Routes = [
     SignModule,
     PanelModule,
     BrowserModule,
+    RevokeModule,
     HttpClientModule,
     RouterModule.forRoot(
       routes,
