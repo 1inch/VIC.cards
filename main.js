@@ -603,6 +603,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _util_merkle_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/merkle-tree */ "./src/app/util/merkle-tree.ts");
+
 
 
 
@@ -638,14 +640,32 @@ var SignComponent = /** @class */ (function () {
         // console.log(this);
     };
     SignComponent.prototype.getAccount = function () {
-        var scope = this;
-        if (!this.web3Service.ready) {
-            return setTimeout(function () {
-                scope.getAccount();
-            }, 100);
-        }
-        var account = this.web3Service.web3.eth.accounts.create(this.privateKey).address;
-        console.log('account', account);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var scope, account, _a, root, index, vicContract, events;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        scope = this;
+                        if (!this.web3Service.ready) {
+                            return [2 /*return*/, setTimeout(function () {
+                                    scope.getAccount();
+                                }, 100)];
+                        }
+                        account = this.web3Service.web3.eth.accounts.create(this.privateKey).address;
+                        _a = _util_merkle_tree__WEBPACK_IMPORTED_MODULE_8__["MerkleTree"].applyProof(account, this.proof), root = _a.root, index = _a.index;
+                        vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+                        return [4 /*yield*/, vicContract.getPastEvents('CardsAdded', {
+                                filter: { root: root },
+                                fromBlock: 7094907,
+                                toBlock: 'latest'
+                            })];
+                    case 1:
+                        events = _b.sent();
+                        console.log('Events', events);
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     SignComponent.prototype.watchAccount = function () {
         var _this = this;
@@ -767,7 +787,7 @@ var MerkleTree = /** @class */ (function () {
         this.layers = this.getLayers(elements.map(function (el) { return keccak160(el); }));
         return this;
     }
-    MerkleTree.prototype.applyProof = function (account, proof) {
+    MerkleTree.applyProof = function (account, proof) {
         var index = 0;
         for (var i = 0; i < proof.length; i++) {
             if (account < proof[i]) {
