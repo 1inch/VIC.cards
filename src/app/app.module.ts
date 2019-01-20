@@ -41,7 +41,10 @@ export const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(
       routes,
-      {enableTracing: false}
+      {
+        enableTracing: false,
+        useHash: true
+      }
     )
   ],
   providers: [],

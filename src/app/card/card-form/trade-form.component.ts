@@ -32,7 +32,7 @@ export class TradeFormComponent implements OnInit {
   loading = false;
 
   vicSmartContractAddress = '0xd321d87758e588438a5c3da5a6f1db076cd6c551';
-  URL_PREFIX = 'https://vic.cards/sign/';
+  URL_PREFIX = 'https://vic.cards/#/sign/';
 
   vCard = {
     name: {
