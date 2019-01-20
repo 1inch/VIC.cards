@@ -45,7 +45,7 @@ export class Web3Service {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
 
-    setInterval(() => this.refreshAccounts(), 100);
+    setInterval(() => this.refreshAccounts(), 500);
   }
 
   private refreshAccounts() {

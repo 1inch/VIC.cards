@@ -56,3 +56,13 @@
     </div>
   </p-footer>
 </p-panel>
+
+<br>
+
+<p-panel header="VIC Cards" [hidden]="!QRCodes.length">
+  <div id="contentToConvert">
+    <p-card *ngFor="let QRCode of QRCodes" [header]="vCard.name.firstNames + ' ' + vCard.name.lastNames">
+      <img [src]="QRCode">
+    </p-card>
+  </div>
+</p-panel>

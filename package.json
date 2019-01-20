@@ -34,6 +34,8 @@
     "@fortawesome/free-solid-svg-icons": "^5.6.0",
     "core-js": "^2.5.7",
     "ethereumjs-util": "^6.0.0",
+    "html2canvas": "^1.0.0-alpha.12",
+    "jspdf": "^1.5.3",
     "ngx-vcard": "^1.1.4",
     "primeicons": "^1.0.0",
     "primeng": "^7.0.0",

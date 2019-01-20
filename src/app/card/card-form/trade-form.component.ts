@@ -9,9 +9,14 @@ import {MerkleTree} from "../../util/merkle-tree";
 
 import { VCard } from 'ngx-vcard';
 
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
+
 library.add(fas, far, fab);
 
 declare let require: any;
+
+const QRCode = require('qrcode');
 
 const vicArtifacts = require('./VicABI.json');
 const {VCardFormatter} = require('ngx-vcard/esm5/lib/ngx-vcard.formatter');
@@ -39,6 +44,7 @@ export class TradeFormComponent implements OnInit {
     title: ''
   };
 
+  QRCodes = [];
   accounts = [];
   account = null;
 
@@ -85,8 +91,10 @@ export class TradeFormComponent implements OnInit {
     // console.log(merkleTree);
 
    // await this.storeMerkleTree(merkleTree);
-    await this.generateVCards(amount, privateKeys.map(pk => pk.privateKey), merkleTree);
-    // this.generateQRCodes();
+    let vCards = await this.generateVCards(amount, privateKeys.map(pk => pk.privateKey), merkleTree);
+    this.QRCodes = await this.generateQRCodes(vCards);
+
+    this.generatePDF();
 
     this.loading = false;
   }
@@ -149,6 +157,36 @@ export class TradeFormComponent implements OnInit {
       return VCardFormatter.getVCardAsString(vCard);
     });
 
-    console.log('Cards', vCards);
+    console.log('VCards', vCards);
+    return vCards;
+  }
+
+  private async generateQRCodes(vCards: any) {
+
+    let QRCodes = await Promise.all(vCards.map( value =>  QRCode.toDataURL(value)));
+
+    console.log('QRCodes', QRCodes);
+
+    return QRCodes;
+  }
+
+  public generatePDF() {
+
+    var data = document.getElementById('contentToConvert');
+
+    html2canvas(data).then(canvas => {
+      // Few necessary setting options
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png');
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+      var position = 0;
+
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+      pdf.save('MYPdf.pdf'); // Generated PDF
+    });
   }
 }
