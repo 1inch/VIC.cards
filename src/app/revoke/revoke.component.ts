@@ -12,7 +12,7 @@ library.add(fas, far, fab);
 
 declare let require: any;
 
-const vicArtifacts = require('./VicABI.json');
+const vicArtifacts = require('../util/VicABI.json');
 
 @Component({
   selector: 'app-revoke',
@@ -136,6 +136,7 @@ export class RevokeComponent implements OnInit {
 
     const vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
 
+    console.log('Selected Index', this.selectedIndex);
     console.log('Events', this.events);
     console.log('Selected Event', this.events[this.selectedEvent]);
     console.log('Root', this.events[this.selectedEvent].returnValues.root);

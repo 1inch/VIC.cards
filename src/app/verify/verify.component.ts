@@ -13,7 +13,7 @@ library.add(fas, far, fab);
 
 declare let require: any;
 
-const vicArtifacts = require('./VicABI.json');
+const vicArtifacts = require('../util/VicABI.json');
 
 @Component({
   selector: 'app-verify',

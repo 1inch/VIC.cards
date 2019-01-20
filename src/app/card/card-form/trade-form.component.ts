@@ -18,7 +18,7 @@ declare let require: any;
 
 const QRCode = require('qrcode');
 
-const vicArtifacts = require('./VicABI.json');
+const vicArtifacts = require('../../util/VicABI.json');
 const {VCardFormatter} = require('ngx-vcard/esm5/lib/ngx-vcard.formatter');
 
 @Component({
