@@ -265,7 +265,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMapp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.email\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.email\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" [header]=\"vCard.name.firstNames + ' ' + vCard.name.lastNames\">\n      <img [src]=\"QRCode\">\n    </p-card>\n  </div>\n</p-panel>\n"
 
 /***/ }),
 
@@ -287,6 +287,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
 /* harmony import */ var _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/merkle-tree */ "./src/app/util/merkle-tree.ts");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.min.js");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jspdf__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! html2canvas */ "./node_modules/html2canvas/dist/npm/index.js");
+/* harmony import */ var html2canvas__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(html2canvas__WEBPACK_IMPORTED_MODULE_9__);
+
+
 
 
 
@@ -296,6 +302,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_5__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_6__["fab"]);
+var QRCode = __webpack_require__(/*! qrcode */ "./node_modules/qrcode/lib/browser.js");
 var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/card/card-form/VicABI.json");
 var VCardFormatter = __webpack_require__(/*! ngx-vcard/esm5/lib/ngx-vcard.formatter */ "./node_modules/ngx-vcard/esm5/lib/ngx-vcard.formatter.js").VCardFormatter;
 var TradeFormComponent = /** @class */ (function () {
@@ -314,6 +321,7 @@ var TradeFormComponent = /** @class */ (function () {
             workEmail: '',
             title: ''
         };
+        this.QRCodes = [];
         this.accounts = [];
         this.account = null;
         // console.log('Constructor: ' + web3Service);
@@ -338,25 +346,23 @@ var TradeFormComponent = /** @class */ (function () {
     TradeFormComponent.prototype.generate = function (amount) {
         if (amount === void 0) { amount = 16; }
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var privateKeys, merkleTree;
+            var privateKeys, merkleTree, vCards, _a;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         this.loading = true;
                         privateKeys = Array.from(Array(amount).keys())
                             .map(function (_) { return _this.web3Service.web3.eth.accounts.create(); });
                         merkleTree = new _util_merkle_tree__WEBPACK_IMPORTED_MODULE_7__["MerkleTree"](privateKeys.map(function (pk) { return pk.address; }));
-                        // console.log(privateKeys);
-                        // console.log(merkleTree);
-                        // await this.storeMerkleTree(merkleTree);
                         return [4 /*yield*/, this.generateVCards(amount, privateKeys.map(function (pk) { return pk.privateKey; }), merkleTree)];
                     case 1:
-                        // console.log(privateKeys);
-                        // console.log(merkleTree);
-                        // await this.storeMerkleTree(merkleTree);
-                        _a.sent();
-                        // this.generateQRCodes();
+                        vCards = _b.sent();
+                        _a = this;
+                        return [4 /*yield*/, this.generateQRCodes(vCards)];
+                    case 2:
+                        _a.QRCodes = _b.sent();
+                        this.generatePDF();
                         this.loading = false;
                         return [2 /*return*/];
                 }
@@ -419,7 +425,37 @@ var TradeFormComponent = /** @class */ (function () {
             };
             return VCardFormatter.getVCardAsString(vCard);
         });
-        console.log('Cards', vCards);
+        console.log('VCards', vCards);
+        return vCards;
+    };
+    TradeFormComponent.prototype.generateQRCodes = function (vCards) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var QRCodes;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, Promise.all(vCards.map(function (value) { return QRCode.toDataURL(value); }))];
+                    case 1:
+                        QRCodes = _a.sent();
+                        console.log('QRCodes', QRCodes);
+                        return [2 /*return*/, QRCodes];
+                }
+            });
+        });
+    };
+    TradeFormComponent.prototype.generatePDF = function () {
+        var data = document.getElementById('contentToConvert');
+        html2canvas__WEBPACK_IMPORTED_MODULE_9___default()(data).then(function (canvas) {
+            // Few necessary setting options
+            var imgWidth = 208;
+            var pageHeight = 295;
+            var imgHeight = canvas.height * imgWidth / canvas.width;
+            var heightLeft = imgHeight;
+            var contentDataURL = canvas.toDataURL('image/png');
+            var pdf = new jspdf__WEBPACK_IMPORTED_MODULE_8__('p', 'mm', 'a4'); // A4 size page of PDF
+            var position = 0;
+            pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+            pdf.save('MYPdf.pdf'); // Generated PDF
+        });
     };
     TradeFormComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -647,7 +683,7 @@ var Web3Service = /** @class */ (function () {
                         }
                         _a.label = 6;
                     case 6:
-                        setInterval(function () { return _this.refreshAccounts(); }, 100);
+                        setInterval(function () { return _this.refreshAccounts(); }, 500);
                         return [2 /*return*/];
                 }
             });
