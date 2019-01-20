@@ -254,7 +254,7 @@ module.exports = [{"constant":false,"inputs":[{"name":"root","type":"uint160"},{
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQW1CO0NBQ3BCIiwiZmlsZSI6InNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVpLXBhbmVsLWZvb3RlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cbiJdfQ== */"
+module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n.ui-card-body {\n  padding: 0 0 0.5em 0;\n}\n\n.ui-card {\n  border: 1px solid #ccc;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQW1CO0NBQ3BCOztBQUVEO0VBQ0UscUJBQXFCO0NBQ3RCOztBQUVEO0VBQ0UsdUJBQXVCO0NBQ3hCIiwiZmlsZSI6InNyYy9hcHAvY2FyZC9jYXJkLWZvcm0vdHJhZGUtZm9ybS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVpLXBhbmVsLWZvb3RlciB7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLnVpLWNhcmQtYm9keSB7XG4gIHBhZGRpbmc6IDAgMCAwLjVlbSAwO1xufVxuXG4udWktY2FyZCB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -265,7 +265,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n/*# sourceMapp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.email\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" [header]=\"vCard.name.firstNames + ' ' + vCard.name.lastNames\">\n      <img [src]=\"QRCode\">\n    </p-card>\n  </div>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-fluid\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" class=\"ui-g-6\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
 
 /***/ }),
 
@@ -344,7 +344,7 @@ var TradeFormComponent = /** @class */ (function () {
         };
     };
     TradeFormComponent.prototype.generate = function (amount) {
-        if (amount === void 0) { amount = 16; }
+        if (amount === void 0) { amount = 8; }
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var privateKeys, merkleTree, vCards, _a;
             var _this = this;
@@ -362,7 +362,7 @@ var TradeFormComponent = /** @class */ (function () {
                         return [4 /*yield*/, this.generateQRCodes(vCards)];
                     case 2:
                         _a.QRCodes = _b.sent();
-                        this.generatePDF();
+                        setTimeout(this.generatePDF, 300);
                         this.loading = false;
                         return [2 /*return*/];
                 }
@@ -421,7 +421,10 @@ var TradeFormComponent = /** @class */ (function () {
                     _this.vCard.workEmail
                 ] : undefined,
                 title: _this.vCard.title,
-                url: _this.URL_PREFIX + privateKey + '/' + proof
+                url: _this.URL_PREFIX + privateKey.substr(2) + '/' + proof
+                // .toString()
+                // .replace(/,/g, '')
+                // .replace(/0x/g, '')
             };
             return VCardFormatter.getVCardAsString(vCard);
         });
@@ -444,7 +447,9 @@ var TradeFormComponent = /** @class */ (function () {
     };
     TradeFormComponent.prototype.generatePDF = function () {
         var data = document.getElementById('contentToConvert');
+        console.log('Data:', data);
         html2canvas__WEBPACK_IMPORTED_MODULE_9___default()(data).then(function (canvas) {
+            console.log('Canvas:', canvas);
             // Few necessary setting options
             var imgWidth = 208;
             var pageHeight = 295;
@@ -461,6 +466,7 @@ var TradeFormComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-trade-form',
             template: __webpack_require__(/*! ./trade-form.component.html */ "./src/app/card/card-form/trade-form.component.html"),
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewEncapsulation"].None,
             styles: [__webpack_require__(/*! ./trade-form.component.css */ "./src/app/card/card-form/trade-form.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"]])
