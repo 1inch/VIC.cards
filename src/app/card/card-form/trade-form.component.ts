@@ -84,9 +84,9 @@ export class TradeFormComponent implements OnInit {
     let privateKeys = Array.from(Array(amount).keys())
       .map(_ => this.web3Service.web3.eth.accounts.create());
 
-    let merkleTree = new MerkleTree(
-      privateKeys.map(pk => pk.address)
-    );
+    let accounts = privateKeys.map(pk => pk.address);
+
+    let merkleTree = new MerkleTree(accounts);
 
     console.log('pk accounts', privateKeys.map(pk => pk.address));
 
@@ -95,7 +95,15 @@ export class TradeFormComponent implements OnInit {
 
     await this.storeMerkleTree(merkleTree);
     let vCards = await this.generateVCards(amount, privateKeys.map(pk => pk.privateKey), merkleTree);
-    this.QRCodes = await this.generateQRCodes(vCards);
+    this.QRCodes = (await this.generateQRCodes(vCards)).map( qr => {
+      return {
+        qr: qr, index: null
+      }
+    });
+
+    for (let i = 0; i < accounts.length; i++) {
+      this.QRCodes[i].index = MerkleTree.applyProof(accounts[i], merkleTree.getHexProof(i)).index;
+    }
 
     setTimeout(this.generatePDF, 300);
 

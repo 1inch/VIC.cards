@@ -18,6 +18,7 @@ import {
 
 import {NgxVcardModule} from 'ngx-vcard';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {OrderModule} from "ngx-order-pipe";
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     CardModule,
     DialogModule,
     PanelModule,
+    OrderModule,
     KeyFilterModule,
     NgxVcardModule,
     BrowserAnimationsModule

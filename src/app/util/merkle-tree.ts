@@ -59,7 +59,7 @@ export class MerkleTree {
     }
 
     const tree = [elements];
-    const maxLevel = 1 + Math.log2(elements.length);
+    const maxLevel = Math.log2(elements.length);
     for (let level = 1; level <= maxLevel; level++) {
       const current = [];
       for (let i = 0; i < tree[level - 1].length / 2; i++) {

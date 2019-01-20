@@ -60,12 +60,12 @@
 <br>
 
 <p-panel header="VIC Cards" [hidden]="!QRCodes.length">
-  <div id="contentToConvert" class="ui-g ui-fluid">
-    <p-card *ngFor="let QRCode of QRCodes" class="ui-g-6">
+  <div id="contentToConvert" class="ui-g ui-sm ui-fluid">
+    <p-card *ngFor="let QRCode of (QRCodes | orderBy: 'index')" class="ui-g-6 ui-sm-12">
 
       <div class="ui-g ui-fluid">
         <div class="ui-g-5">
-          <img [src]="QRCode" width="135">
+          <img [src]="QRCode.qr" width="135">
         </div>
         <div class="ui-g-7">
           <span style="font-size: 20pt;">
@@ -82,6 +82,7 @@
       </div>
 
       <p-footer>
+        <span style="float: right; margin: 1px 5px 0 0; background: #e1e1e1; border-radius: 50%; padding: 5px 10px;">{{ QRCode.index + 1 }}</span>
         <div style="text-align: center">
           📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}
         </div>

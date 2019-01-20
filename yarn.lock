@@ -5661,6 +5661,11 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
+ngx-order-pipe@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/ngx-order-pipe/-/ngx-order-pipe-2.0.2.tgz#c670ea8008695d728661c1b81bf2d7f2a3792114"
+  integrity sha512-uFDNHaY36bpF+aK9jhNdMS7BclztZYpAKHHIZg9VTL/kuhETSObX+lDIlssEpovy27lJY+Ymmey40FsEk1YMvw==
+
 ngx-vcard@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/ngx-vcard/-/ngx-vcard-1.1.4.tgz#6a059a7887d499d2d4d52dfc567ec9bf2d215e52"
