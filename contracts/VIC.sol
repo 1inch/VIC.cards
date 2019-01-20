@@ -11,7 +11,7 @@ contract VIC {
     event CardCompromised(
         address indexed user,
         uint160 indexed root,
-        uint32 index
+        uint32 indexed index
     );
     
     function publish(uint160 root, uint32 count) public {
