@@ -38,6 +38,10 @@ Handover for an MVP to the T-Labs.
 
 https://github.com/CryptoManiacsZone/VIC.cards
 
+## Slides
+
+<a href="./RAW/VIC.pdf">VIC.pdf</a>
+
 # Install
 ``yarn``
 
