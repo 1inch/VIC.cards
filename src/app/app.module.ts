@@ -1,26 +1,48 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
-import {CardFormModule} from './card/card-form.module';
 import {CommonModule} from '@angular/common';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PanelModule} from 'primeng/panel';
+import {RouterModule, Routes} from "@angular/router";
+import {NoContentComponent} from "./no-content/no-content.component";
+import {CardFormModule} from "./card/card-form.module";
+import {TradeFormComponent} from "./card/card-form/trade-form.component";
+import {SignModule} from "./sign/sign.module";
+import {SignComponent} from "./sign/sign.component";
+import {PanelModule} from "primeng/panel";
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: TradeFormComponent
+  },
+  {
+    path: 'sign/:privateKey/:proof',
+    component: SignComponent
+  },
+  {
+    path: '**',
+    component: NoContentComponent
+  },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NoContentComponent
   ],
   imports: [
-    BrowserAnimationsModule,
     CommonModule,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
     CardFormModule,
+    SignModule,
     PanelModule,
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(
+      routes,
+      {enableTracing: false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

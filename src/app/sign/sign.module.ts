@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TradeFormComponent} from './card-form/trade-form.component';
 import {UtilModule} from '../util/util.module';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
@@ -17,7 +16,7 @@ import {
 } from "primeng/primeng";
 
 import {NgxVcardModule} from 'ngx-vcard';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SignComponent} from "./sign.component";
 
 @NgModule({
   imports: [
@@ -34,12 +33,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     DialogModule,
     PanelModule,
     KeyFilterModule,
-    NgxVcardModule,
-    BrowserAnimationsModule
+    NgxVcardModule
   ],
-  declarations: [TradeFormComponent],
-  exports: [TradeFormComponent],
-  entryComponents: [TradeFormComponent]
+  declarations: [SignComponent],
+  exports: [SignComponent],
+  entryComponents: [SignComponent]
 })
-export class CardFormModule {
+export class SignModule {
 }
