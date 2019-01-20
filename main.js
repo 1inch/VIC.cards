@@ -175,7 +175,10 @@ var AppModule = /** @class */ (function () {
                 primeng_panel__WEBPACK_IMPORTED_MODULE_12__["PanelModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(routes, { enableTracing: false })
+                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(routes, {
+                    enableTracing: false,
+                    useHash: true
+                })
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -327,7 +330,7 @@ var TradeFormComponent = /** @class */ (function () {
         this.web3Service = web3Service;
         this.loading = false;
         this.vicSmartContractAddress = '0xd321d87758e588438a5c3da5a6f1db076cd6c551';
-        this.URL_PREFIX = 'https://vic.cards/sign/';
+        this.URL_PREFIX = 'https://vic.cards/#/sign/';
         this.vCard = {
             name: {
                 firstNames: '',
