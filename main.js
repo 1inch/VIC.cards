@@ -638,11 +638,10 @@ var SignComponent = /** @class */ (function () {
         console.log('Private Key', this.privateKey);
         console.log('Proof', this.proof);
         console.log('Web3', this.web3Service);
-        this.watchAccount();
-        this.getAccount();
+        this.parseEvents();
         // console.log(this);
     };
-    SignComponent.prototype.getAccount = function () {
+    SignComponent.prototype.parseEvents = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var scope, account, _a, root, index, vicContract, events;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
@@ -651,7 +650,7 @@ var SignComponent = /** @class */ (function () {
                         scope = this;
                         if (!this.web3Service.ready) {
                             return [2 /*return*/, setTimeout(function () {
-                                    scope.getAccount();
+                                    scope.parseEvents();
                                 }, 100)];
                         }
                         account = this.web3Service.web3.eth.accounts.create(this.privateKey).address;
@@ -668,21 +667,6 @@ var SignComponent = /** @class */ (function () {
                         return [2 /*return*/];
                 }
             });
-        });
-    };
-    SignComponent.prototype.watchAccount = function () {
-        var _this = this;
-        this.web3Service.accountsObservable.subscribe(function (accounts) {
-            // console.log('Accounts: ', accounts);
-            _this.accounts = [];
-            for (var i = 0; i < accounts.length; i++) {
-                _this.accounts.push({
-                    label: accounts[i],
-                    value: accounts[i],
-                });
-            }
-            // console.log('Accounts', this.accounts);
-            _this.account = accounts[0];
         });
     };
     SignComponent.prototype.sign = function () {
@@ -959,11 +943,12 @@ var Web3Service = /** @class */ (function () {
     }
     Web3Service.prototype.bootstrapWeb3 = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var error_1;
+            var getAccounts, error_1;
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
+                        getAccounts = true;
                         if (!window.ethereum) return [3 /*break*/, 5];
                         window.web3 = new Web3(ethereum);
                         this.web3 = window.web3;
@@ -991,10 +976,14 @@ var Web3Service = /** @class */ (function () {
                             Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
                             // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
                             this.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws'));
+                            getAccounts = false;
+                            this.ready = true;
                         }
                         _a.label = 6;
                     case 6:
-                        setInterval(function () { return _this.refreshAccounts(); }, 500);
+                        if (getAccounts) {
+                            setInterval(function () { return _this.refreshAccounts(); }, 500);
+                        }
                         return [2 /*return*/];
                 }
             });
