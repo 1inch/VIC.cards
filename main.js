@@ -72,7 +72,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"max-width: 768px; margin: 50px auto;\">\n  <img src=\"assets/logo.svg\" style=\"margin: 0 auto 50px auto; width: 200px; display: block;\">\n  <app-trade-form></app-trade-form>\n</div>\n"
+module.exports = "<div style=\"max-width: 768px; margin: 50px auto;\">\n  <a class=\"btn btn-primary\" routerLink=\"/\"><img src=\"assets/logo.svg\" style=\"margin: 0 auto 50px auto; width: 200px; display: block;\"></a>\n  <router-outlet></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -111,23 +111,27 @@ var AppComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
   \*******************************/
-/*! exports provided: AppModule */
+/*! exports provided: routes, AppModule */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "routes", function() { return routes; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppModule", function() { return AppModule; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _card_card_form_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./card/card-form.module */ "./src/app/card/card-form.module.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! primeng/panel */ "./node_modules/primeng/panel.js");
-/* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(primeng_panel__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _no_content_no_content_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./no-content/no-content.component */ "./src/app/no-content/no-content.component.ts");
+/* harmony import */ var _card_card_form_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./card/card-form.module */ "./src/app/card/card-form.module.ts");
+/* harmony import */ var _card_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./card/card-form/trade-form.component */ "./src/app/card/card-form/trade-form.component.ts");
+/* harmony import */ var _sign_sign_module__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./sign/sign.module */ "./src/app/sign/sign.module.ts");
+/* harmony import */ var _sign_sign_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sign/sign.component */ "./src/app/sign/sign.component.ts");
+/* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! primeng/panel */ "./node_modules/primeng/panel.js");
+/* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(primeng_panel__WEBPACK_IMPORTED_MODULE_12__);
 
 
 
@@ -138,25 +142,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _card_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_9__["TradeFormComponent"]
+    },
+    {
+        path: 'sign/:privateKey/:proof',
+        component: _sign_sign_component__WEBPACK_IMPORTED_MODULE_11__["SignComponent"]
+    },
+    {
+        path: '**',
+        component: _no_content_no_content_component__WEBPACK_IMPORTED_MODULE_7__["NoContentComponent"]
+    },
+];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
+                _no_content_no_content_component__WEBPACK_IMPORTED_MODULE_7__["NoContentComponent"]
             ],
             imports: [
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["BrowserAnimationsModule"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_7__["CommonModule"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_5__["CommonModule"],
+                _card_card_form_module__WEBPACK_IMPORTED_MODULE_8__["CardFormModule"],
+                _sign_sign_module__WEBPACK_IMPORTED_MODULE_10__["SignModule"],
+                primeng_panel__WEBPACK_IMPORTED_MODULE_12__["PanelModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _card_card_form_module__WEBPACK_IMPORTED_MODULE_6__["CardFormModule"],
-                primeng_panel__WEBPACK_IMPORTED_MODULE_9__["PanelModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(routes, { enableTracing: false })
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -181,16 +203,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./card-form/trade-form.component */ "./src/app/card/card-form/trade-form.component.ts");
 /* harmony import */ var _util_util_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/util.module */ "./src/app/util/util.module.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
-/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
-/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
-
-
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 
 
 
@@ -207,26 +225,25 @@ var CardFormModule = /** @class */ (function () {
     CardFormModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             imports: [
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_6__["BrowserAnimationsModule"],
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
                 _util_util_module__WEBPACK_IMPORTED_MODULE_4__["UtilModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["InputTextModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormsModule"],
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_9__["BrowserModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["ButtonModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["TabViewModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["CodeHighlighterModule"],
-                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_7__["FontAwesomeModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["DropdownModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["CardModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["DialogModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["PanelModule"],
-                primeng_primeng__WEBPACK_IMPORTED_MODULE_10__["KeyFilterModule"],
-                ngx_vcard__WEBPACK_IMPORTED_MODULE_11__["NgxVcardModule"]
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["InputTextModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CodeHighlighterModule"],
+                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_5__["FontAwesomeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["CardModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["KeyFilterModule"],
+                ngx_vcard__WEBPACK_IMPORTED_MODULE_8__["NgxVcardModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"]
             ],
             declarations: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]],
-            exports: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]]
+            exports: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]],
+            entryComponents: [_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_3__["TradeFormComponent"]]
         })
     ], CardFormModule);
     return CardFormModule;
@@ -265,7 +282,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n.ui-card-body 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-fluid\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" class=\"ui-g-6\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-fluid\">\n    <p-card *ngFor=\"let QRCode of QRCodes\" class=\"ui-g-6\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
 
 /***/ }),
 
@@ -472,6 +489,255 @@ var TradeFormComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_2__["Web3Service"]])
     ], TradeFormComponent);
     return TradeFormComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/no-content/no-content.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/no-content/no-content.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".main-content {\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n  background: #fff;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbm8tY29udGVudC9uby1jb250ZW50LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxnQkFBZ0I7RUFDaEIsT0FBTztFQUNQLFFBQVE7RUFDUixhQUFhO0VBQ2IsWUFBWTtFQUNaLGFBQWE7RUFDYixpQkFBaUI7Q0FDbEIiLCJmaWxlIjoic3JjL2FwcC9uby1jb250ZW50L25vLWNvbnRlbnQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYWluLWNvbnRlbnQge1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIHRvcDogMDtcbiAgbGVmdDogMDtcbiAgei1pbmRleDogOTk5O1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBiYWNrZ3JvdW5kOiAjZmZmO1xufVxuIl19 */"
+
+/***/ }),
+
+/***/ "./src/app/no-content/no-content.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/no-content/no-content.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p-panel>\n  <p-header>\n    Page Not Found!\n  </p-header>\n\n  <p>\n    Seems you're looking for something that doesn't exist. <a class=\"btn btn-primary\" routerLink=\"/\">Return home</a>\n  </p>\n</p-panel>\n"
+
+/***/ }),
+
+/***/ "./src/app/no-content/no-content.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/no-content/no-content.component.ts ***!
+  \****************************************************/
+/*! exports provided: NoContentComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NoContentComponent", function() { return NoContentComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var NoContentComponent = /** @class */ (function () {
+    function NoContentComponent() {
+    }
+    NoContentComponent.prototype.ngOnInit = function () {
+    };
+    NoContentComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-no-content',
+            template: __webpack_require__(/*! ./no-content.component.html */ "./src/app/no-content/no-content.component.html"),
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
+            styles: [__webpack_require__(/*! ./no-content.component.css */ "./src/app/no-content/no-content.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], NoContentComponent);
+    return NoContentComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/sign/VicABI.json":
+/*!**********************************!*\
+  !*** ./src/app/sign/VicABI.json ***!
+  \**********************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, default */
+/***/ (function(module) {
+
+module.exports = [{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"_report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"reportBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"_publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"publishBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"count","type":"uint32"}],"name":"CardsAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"index","type":"uint32"}],"name":"CardCompromised","type":"event"}];
+
+/***/ }),
+
+/***/ "./src/app/sign/sign.component.css":
+/*!*****************************************!*\
+  !*** ./src/app/sign/sign.component.css ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3NpZ24vc2lnbi5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/sign/sign.component.html":
+/*!******************************************!*\
+  !*** ./src/app/sign/sign.component.html ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p-panel>\n  <p-header>\n    Sign Form\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n      <code style=\"border: 1px solid #ccc; background: #efefef; padding: 10px; display: block\">\n        0x\n      </code>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded ui-button-success\" label=\"📤 E-MAIL\" [disabled]=\"loading\" (click)=\"sign()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
+
+/***/ }),
+
+/***/ "./src/app/sign/sign.component.ts":
+/*!****************************************!*\
+  !*** ./src/app/sign/sign.component.ts ***!
+  \****************************************/
+/*! exports provided: SignComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignComponent", function() { return SignComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _util_web3_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/web3.service */ "./src/app/util/web3.service.ts");
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["fab"]);
+var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/sign/VicABI.json");
+var SignComponent = /** @class */ (function () {
+    function SignComponent(web3Service, route, router) {
+        this.web3Service = web3Service;
+        this.route = route;
+        this.router = router;
+        this.privateKey = '';
+        this.proof = [];
+        this.loading = false;
+        this.account = null;
+        this.accounts = [];
+        this.vicSmartContractAddress = '0xd321d87758e588438a5c3da5a6f1db076cd6c551';
+        // console.log('Constructor: ' + web3Service);
+    }
+    SignComponent.prototype.ngOnInit = function () {
+        // console.log('OnInit: ' + this.web3Service);
+        this.privateKey = '0x' + this.route.snapshot.paramMap.get('privateKey');
+        this.proof = this.route.snapshot.paramMap.get('proof').split(',');
+        console.log('Private Key', this.privateKey);
+        console.log('Proof', this.proof);
+        console.log('Web3', this.web3Service);
+        this.watchAccount();
+        this.getAccount();
+        // console.log(this);
+    };
+    SignComponent.prototype.getAccount = function () {
+        var scope = this;
+        if (!this.web3Service.ready) {
+            return setTimeout(function () {
+                scope.getAccount();
+            }, 100);
+        }
+        var account = this.web3Service.web3.eth.accounts.create(this.privateKey).address;
+        console.log('account', account);
+    };
+    SignComponent.prototype.watchAccount = function () {
+        var _this = this;
+        this.web3Service.accountsObservable.subscribe(function (accounts) {
+            // console.log('Accounts: ', accounts);
+            _this.accounts = [];
+            for (var i = 0; i < accounts.length; i++) {
+                _this.accounts.push({
+                    label: accounts[i],
+                    value: accounts[i],
+                });
+            }
+            // console.log('Accounts', this.accounts);
+            _this.account = accounts[0];
+        });
+    };
+    SignComponent.prototype.sign = function () {
+    };
+    SignComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["Component"])({
+            selector: 'app-sign',
+            template: __webpack_require__(/*! ./sign.component.html */ "./src/app/sign/sign.component.html"),
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ViewEncapsulation"].None,
+            styles: [__webpack_require__(/*! ./sign.component.css */ "./src/app/sign/sign.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_1__["Web3Service"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+    ], SignComponent);
+    return SignComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/sign/sign.module.ts":
+/*!*************************************!*\
+  !*** ./src/app/sign/sign.module.ts ***!
+  \*************************************/
+/*! exports provided: SignModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignModule", function() { return SignModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _util_util_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/util.module */ "./src/app/util/util.module.ts");
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
+/* harmony import */ var _sign_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sign.component */ "./src/app/sign/sign.component.ts");
+
+
+
+
+
+
+
+
+
+var SignModule = /** @class */ (function () {
+    function SignModule() {
+    }
+    SignModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _util_util_module__WEBPACK_IMPORTED_MODULE_3__["UtilModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["InputTextModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["CodeHighlighterModule"],
+                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["CardModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["KeyFilterModule"],
+                ngx_vcard__WEBPACK_IMPORTED_MODULE_7__["NgxVcardModule"]
+            ],
+            declarations: [_sign_component__WEBPACK_IMPORTED_MODULE_8__["SignComponent"]],
+            exports: [_sign_component__WEBPACK_IMPORTED_MODULE_8__["SignComponent"]],
+            entryComponents: [_sign_component__WEBPACK_IMPORTED_MODULE_8__["SignComponent"]]
+        })
+    ], SignModule);
+    return SignModule;
 }());
 
 
@@ -685,7 +951,7 @@ var Web3Service = /** @class */ (function () {
                             // Hack to provide backwards compatibility for Truffle, which uses web3js 0.20.x
                             Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
                             // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-                            this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+                            this.web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io'));
                         }
                         _a.label = 6;
                     case 6:
