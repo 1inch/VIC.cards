@@ -20,7 +20,7 @@ export class MerkleTree {
     return this;
   }
 
-  applyProof(account, proof) {
+  public static applyProof(account, proof) {
 
     let index = 0;
 

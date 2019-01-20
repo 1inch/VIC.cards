@@ -7,6 +7,7 @@ import {fab} from '@fortawesome/free-brands-svg-icons';
 
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MerkleTree} from "../util/merkle-tree";
 
 library.add(fas, far, fab);
 
@@ -55,18 +56,29 @@ export class SignComponent implements OnInit {
     // console.log(this);
   }
 
-  getAccount() {
+  async getAccount() {
 
     let scope = this;
 
     if (!this.web3Service.ready) {
-      return setTimeout(function() {
+      return setTimeout(function () {
         scope.getAccount();
       }, 100);
     }
 
     let account = this.web3Service.web3.eth.accounts.create(this.privateKey).address;
-    console.log('account', account);
+
+    let {root, index} = MerkleTree.applyProof(account, this.proof);
+
+    const vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+
+    let events = await vicContract.getPastEvents('CardsAdded', {
+      filter: {root: root},
+      fromBlock: 7094907,
+      toBlock: 'latest'
+    });
+
+    console.log('Events', events);
   }
 
   watchAccount() {
