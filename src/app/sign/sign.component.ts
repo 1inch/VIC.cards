@@ -13,7 +13,7 @@ library.add(fas, far, fab);
 
 declare let require: any;
 
-const vicArtifacts = require('./VicABI.json');
+const vicArtifacts = require('../util/VicABI.json');
 
 @Component({
   selector: 'app-sign',
@@ -97,9 +97,11 @@ export class SignComponent implements OnInit {
     }
 
     console.log('Events', events);
+    console.log('Event', events[0].returnValues.user);
+    console.log('Index', index);
 
     let kickEvents = await vicContract.getPastEvents('CardCompromised', {
-      filter: {user: events[0].user, root: root, index: index},
+      filter: {user: events[0].returnValues.user, root: root, index: index},
       fromBlock: 7094907,
       toBlock: 'latest'
     });
