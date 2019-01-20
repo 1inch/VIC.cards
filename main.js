@@ -134,6 +134,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var primeng_panel__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(primeng_panel__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _verify_verify_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./verify/verify.component */ "./src/app/verify/verify.component.ts");
 /* harmony import */ var _verify_verify_module__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./verify/verify.module */ "./src/app/verify/verify.module.ts");
+/* harmony import */ var _revoke_revoke_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./revoke/revoke.component */ "./src/app/revoke/revoke.component.ts");
+/* harmony import */ var _revoke_revoke_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./revoke/revoke.module */ "./src/app/revoke/revoke.module.ts");
+
+
 
 
 
@@ -153,6 +157,10 @@ var routes = [
     {
         path: '',
         component: _card_card_form_trade_form_component__WEBPACK_IMPORTED_MODULE_9__["TradeFormComponent"]
+    },
+    {
+        path: 'revoke',
+        component: _revoke_revoke_component__WEBPACK_IMPORTED_MODULE_15__["RevokeComponent"]
     },
     {
         path: 'sign/:privateKey/:proof/:email',
@@ -183,6 +191,7 @@ var AppModule = /** @class */ (function () {
                 _sign_sign_module__WEBPACK_IMPORTED_MODULE_10__["SignModule"],
                 primeng_panel__WEBPACK_IMPORTED_MODULE_12__["PanelModule"],
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                _revoke_revoke_module__WEBPACK_IMPORTED_MODULE_16__["RevokeModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_6__["RouterModule"].forRoot(routes, {
                     enableTracing: false,
@@ -222,6 +231,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var ngx_order_pipe__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-order-pipe */ "./node_modules/ngx-order-pipe/ngx-order-pipe.es5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -252,6 +263,7 @@ var CardFormModule = /** @class */ (function () {
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["DialogModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["PanelModule"],
                 ngx_order_pipe__WEBPACK_IMPORTED_MODULE_10__["OrderModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"],
                 primeng_primeng__WEBPACK_IMPORTED_MODULE_7__["KeyFilterModule"],
                 ngx_vcard__WEBPACK_IMPORTED_MODULE_8__["NgxVcardModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__["BrowserAnimationsModule"]
@@ -297,7 +309,7 @@ module.exports = ".ui-panel-footer {\n  text-align: center;\n}\n\n.ui-card-body 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p-panel>\n  <p-header>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" required [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"email\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-sm ui-fluid\">\n    <p-card *ngFor=\"let QRCode of (QRCodes | orderBy: 'index')\" class=\"ui-g-6 ui-sm-12\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode.qr\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <span style=\"float: right; margin: 1px 5px 0 0; background: #e1e1e1; border-radius: 50%; padding: 5px 10px;\">{{ QRCode.index + 1 }}</span>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
+module.exports = "<p-panel>\n  <p-header>\n    <a class=\"btn btn-primary\" routerLink=\"/revoke\" style=\"float: right;\">Revoke</a>\n    Generate VIC Cards\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.title\" [disabled]=\"loading\" id=\"title\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Title</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.firstNames\" [disabled]=\"loading\" id=\"firstName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"firstName\">First Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.name.lastNames\" [disabled]=\"loading\" id=\"lastName\" pInputText size=\"30\" type=\"text\">\n            <label for=\"lastName\">Last Name</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.organization\" [disabled]=\"loading\" id=\"organization\" pInputText size=\"30\" type=\"text\">\n            <label for=\"organization\">Organization</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.telephone\" [disabled]=\"loading\" id=\"workPhone\" pInputText size=\"30\" type=\"tel\">\n            <label for=\"workPhone\">Work Phone</label>\n        </span>\n    </div>\n\n    <div class=\"ui-g-12 ui-md-12\">\n        <span class=\"ui-float-label\">\n            <input [(ngModel)]=\"vCard.workEmail\" required [disabled]=\"loading\" id=\"emailAddress\" pInputText size=\"30\" type=\"email\">\n            <label for=\"emailAddress\">E-Mail Address</label>\n        </span>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-rounded\" label=\"Generate\" [disabled]=\"loading\" (click)=\"generate()\"></button>\n      &nbsp;\n      <button pButton type=\"reset\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Reset\" (click)=\"resetVCard()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n\n<br>\n\n<p-panel header=\"VIC Cards\" [hidden]=\"!QRCodes.length\">\n  <div id=\"contentToConvert\" class=\"ui-g ui-sm ui-fluid\">\n    <p-card *ngFor=\"let QRCode of (QRCodes | orderBy: 'index')\" class=\"ui-g-6 ui-sm-12\">\n\n      <div class=\"ui-g ui-fluid\">\n        <div class=\"ui-g-5\">\n          <img [src]=\"QRCode.qr\" width=\"135\">\n        </div>\n        <div class=\"ui-g-7\">\n          <span style=\"font-size: 20pt;\">\n            <div [hidden]=\"!vCard.title\">\n              {{vCard.title}}\n            </div>\n\n            {{vCard.name.firstNames + ' ' + vCard.name.lastNames}}\n            <div style=\"color: darkgray; font-size: 14pt;\">\n              {{vCard.organization}}\n            </div>\n          </span>\n        </div>\n      </div>\n\n      <p-footer>\n        <span style=\"float: right; margin: 1px 5px 0 0; background: #e1e1e1; border-radius: 50%; padding: 5px 10px;\">{{ QRCode.index + 1 }}</span>\n        <div style=\"text-align: center\">\n          📞 {{vCard.telephone}}&nbsp;&nbsp;&nbsp;📨 {{vCard.workEmail}}\n        </div>\n      </p-footer>\n    </p-card>\n  </div>\n</p-panel>\n"
 
 /***/ }),
 
@@ -579,6 +591,284 @@ var NoContentComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], NoContentComponent);
     return NoContentComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/revoke/VicABI.json":
+/*!************************************!*\
+  !*** ./src/app/revoke/VicABI.json ***!
+  \************************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, default */
+/***/ (function(module) {
+
+module.exports = [{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"}],"name":"_report","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"index","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"reportBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"_publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"user","type":"address"},{"name":"root","type":"uint160"},{"name":"count","type":"uint32"},{"name":"r","type":"bytes32"},{"name":"s","type":"bytes32"},{"name":"v","type":"uint8"}],"name":"publishBySignature","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"root","type":"uint160"},{"name":"count","type":"uint32"}],"name":"publish","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"count","type":"uint32"}],"name":"CardsAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"user","type":"address"},{"indexed":true,"name":"root","type":"uint160"},{"indexed":false,"name":"index","type":"uint32"}],"name":"CardCompromised","type":"event"}];
+
+/***/ }),
+
+/***/ "./src/app/revoke/revoke.component.css":
+/*!*********************************************!*\
+  !*** ./src/app/revoke/revoke.component.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Jldm9rZS9yZXZva2UuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/revoke/revoke.component.html":
+/*!**********************************************!*\
+  !*** ./src/app/revoke/revoke.component.html ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p-panel>\n  <p-header>\n    Revoke Form\n  </p-header>\n\n  <div class=\"ui-g ui-fluid\">\n    <div class=\"ui-g-12 ui-md-12\">\n      <div class=\"ui-g ui-fluid\">\n\n        <div class=\"ui-g-6 ui-md-12\">\n          <span class=\"ui-float-label\">\n              <p-dropdown [options]=\"eventBlocks\" autoWidth=\"\" [(ngModel)]=\"selectedEvent\"></p-dropdown>\n          </span>\n        </div>\n\n        <div class=\"ui-g-6 ui-md-12\">\n          <span class=\"ui-float-label\">\n              <p-dropdown [options]=\"indexes\" autoWidth=\"\" [(ngModel)]=\"selectedIndex\"></p-dropdown>\n          </span>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <p-footer style=\"text-align: center;\">\n    <div class=\"margin: 0 auto;\">\n      <button pButton type=\"button\" class=\"ui-button-danger ui-button-rounded\" [disabled]=\"loading\" label=\"Revoke\" (click)=\"revoke()\"></button>\n    </div>\n  </p-footer>\n</p-panel>\n"
+
+/***/ }),
+
+/***/ "./src/app/revoke/revoke.component.ts":
+/*!********************************************!*\
+  !*** ./src/app/revoke/revoke.component.ts ***!
+  \********************************************/
+/*! exports provided: RevokeComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RevokeComponent", function() { return RevokeComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _util_web3_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/web3.service */ "./src/app/util/web3.service.ts");
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-brands-svg-icons */ "./node_modules/@fortawesome/free-brands-svg-icons/index.es.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+
+
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["fas"], _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_4__["far"], _fortawesome_free_brands_svg_icons__WEBPACK_IMPORTED_MODULE_5__["fab"]);
+var vicArtifacts = __webpack_require__(/*! ./VicABI.json */ "./src/app/revoke/VicABI.json");
+var RevokeComponent = /** @class */ (function () {
+    function RevokeComponent(web3Service, route, router) {
+        this.web3Service = web3Service;
+        this.route = route;
+        this.router = router;
+        this.loading = false;
+        this.account = null;
+        this.selectedIndex = 0;
+        this.selectedEvent = 0;
+        this.indexes = [
+            {
+                label: "1",
+                value: 0
+            }, {
+                label: "2",
+                value: 1
+            }, {
+                label: "3",
+                value: 2
+            }, {
+                label: "4",
+                value: 3
+            }, {
+                label: "5",
+                value: 4
+            }, {
+                label: "6",
+                value: 5
+            }, {
+                label: "7",
+                value: 6
+            }, {
+                label: "8",
+                value: 7
+            },
+        ];
+        this.eventBlocks = [];
+        this.events = [];
+        this.accounts = [];
+        this.vicSmartContractAddress = '0x98aF9e16cb231b4556D451eE08ba8A42f9908b7d';
+        // console.log('Constructor: ' + web3Service);
+    }
+    RevokeComponent.prototype.ngOnInit = function () {
+        // console.log('OnInit: ' + this.web3Service);
+        this.watchAccount();
+        // console.log(this);
+    };
+    RevokeComponent.prototype.watchAccount = function () {
+        var _this = this;
+        this.web3Service.accountsObservable.subscribe(function (accounts) {
+            console.log('Accounts: ', accounts);
+            _this.accounts = [];
+            for (var i = 0; i < accounts.length; i++) {
+                _this.accounts.push({
+                    label: accounts[i],
+                    value: accounts[i],
+                });
+            }
+            // console.log('Accounts', this.accounts);
+            _this.account = accounts[0];
+            _this.parseEvents();
+        });
+    };
+    RevokeComponent.prototype.parseEvents = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var scope, vicContract, _a, _b;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_c) {
+                switch (_c.label) {
+                    case 0:
+                        scope = this;
+                        if (!this.web3Service.ready) {
+                            return [2 /*return*/, setTimeout(function () {
+                                    scope.parseEvents();
+                                }, 100)];
+                        }
+                        vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+                        _a = this;
+                        return [4 /*yield*/, vicContract.getPastEvents('CardsAdded', {
+                                filter: { user: this.account },
+                                fromBlock: 7094907,
+                                toBlock: 'latest'
+                            })];
+                    case 1:
+                        _a.events = _c.sent();
+                        _b = this;
+                        return [4 /*yield*/, Promise.all(this.events.map(function (event) { return _this.web3Service.web3.eth.getBlock(event.blockNumber); }))];
+                    case 2:
+                        _b.eventBlocks = (_c.sent())
+                            .map(function (obj, index) {
+                            return {
+                                label: (new Date(obj['timestamp'] * 1000)).toUTCString(),
+                                value: index
+                            };
+                        });
+                        console.log(this.eventBlocks);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RevokeComponent.prototype.revoke = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var vicContract, kickEvents, status_1;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        vicContract = new this.web3Service.web3.eth.Contract(vicArtifacts, this.vicSmartContractAddress);
+                        console.log('Events', this.events);
+                        console.log('Selected Event', this.events[this.selectedEvent]);
+                        console.log('Root', this.events[this.selectedEvent].returnValues.root);
+                        return [4 /*yield*/, vicContract.getPastEvents('CardCompromised', {
+                                filter: { root: this.events[this.selectedEvent].returnValues.root, index: this.selectedIndex },
+                                fromBlock: 7094907,
+                                toBlock: 'latest'
+                            })];
+                    case 1:
+                        kickEvents = _a.sent();
+                        console.log('Kick events', kickEvents);
+                        if (kickEvents.length) {
+                            status_1 = 'This VIC card was already revoked!';
+                            alert(status_1);
+                            return [2 /*return*/];
+                        }
+                        return [4 /*yield*/, vicContract.methods
+                                .report(this.events[this.selectedEvent].returnValues.root, this.selectedIndex)
+                                .send({
+                                from: this.account
+                            })];
+                    case 2:
+                        _a.sent();
+                        alert('VIC card is now revoked!');
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    RevokeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_6__["Component"])({
+            selector: 'app-revoke',
+            template: __webpack_require__(/*! ./revoke.component.html */ "./src/app/revoke/revoke.component.html"),
+            encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_6__["ViewEncapsulation"].None,
+            styles: [__webpack_require__(/*! ./revoke.component.css */ "./src/app/revoke/revoke.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_util_web3_service__WEBPACK_IMPORTED_MODULE_1__["Web3Service"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+    ], RevokeComponent);
+    return RevokeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/revoke/revoke.module.ts":
+/*!*****************************************!*\
+  !*** ./src/app/revoke/revoke.module.ts ***!
+  \*****************************************/
+/*! exports provided: RevokeModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RevokeModule", function() { return RevokeModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _util_util_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/util.module */ "./src/app/util/util.module.ts");
+/* harmony import */ var _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/angular-fontawesome */ "./node_modules/@fortawesome/angular-fontawesome/fesm5/angular-fontawesome.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! primeng/primeng */ "./node_modules/primeng/primeng.js");
+/* harmony import */ var primeng_primeng__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(primeng_primeng__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var ngx_vcard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-vcard */ "./node_modules/ngx-vcard/fesm5/ngx-vcard.js");
+/* harmony import */ var _revoke_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./revoke.component */ "./src/app/revoke/revoke.component.ts");
+
+
+
+
+
+
+
+
+
+var RevokeModule = /** @class */ (function () {
+    function RevokeModule() {
+    }
+    RevokeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _util_util_module__WEBPACK_IMPORTED_MODULE_3__["UtilModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["InputTextModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["ButtonModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["DropdownModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["TabViewModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["CodeHighlighterModule"],
+                _fortawesome_angular_fontawesome__WEBPACK_IMPORTED_MODULE_4__["FontAwesomeModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["CardModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["DialogModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["PanelModule"],
+                primeng_primeng__WEBPACK_IMPORTED_MODULE_6__["KeyFilterModule"],
+                ngx_vcard__WEBPACK_IMPORTED_MODULE_7__["NgxVcardModule"]
+            ],
+            declarations: [_revoke_component__WEBPACK_IMPORTED_MODULE_8__["RevokeComponent"]],
+            exports: [_revoke_component__WEBPACK_IMPORTED_MODULE_8__["RevokeComponent"]],
+            entryComponents: [_revoke_component__WEBPACK_IMPORTED_MODULE_8__["RevokeComponent"]]
+        })
+    ], RevokeModule);
+    return RevokeModule;
 }());
 
 
