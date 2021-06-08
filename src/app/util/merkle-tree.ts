@@ -70,6 +70,13 @@ export class MerkleTree {
           hash = keccak160(Buffer.concat([a, b]));
         } else {
           hash = keccak160(Buffer.concat([b, a]));
+          
+          const rangeLength = 1 << (level - 1);
+          const fromIndex = i * rangeLength;
+          this.elements = this.elements.slice(0, fromIndex)
+            .concat(this.elements.slice(fromIndex + rangeLength, fromIndex + 2*rangeLength))
+            .concat(this.elements.slice(fromIndex, fromIndex + rangeLength))
+            .concat(this.elements.slice(fromIndex + 2*rangeLength));
         }
         current.push(hash);
       }

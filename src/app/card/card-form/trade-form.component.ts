@@ -88,6 +88,8 @@ export class TradeFormComponent implements OnInit {
 
     let merkleTree = new MerkleTree(accounts);
 
+    privateKeys = merkleTree.elements.map(el => privateKeys.find(pk => el == pk.address));
+
     console.log('pk accounts', privateKeys.map(pk => pk.address));
 
     // console.log(privateKeys);
